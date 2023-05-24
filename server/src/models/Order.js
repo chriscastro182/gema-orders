@@ -5,13 +5,16 @@ const etapaSchema = new Schema({
   Etapa: { type: String, required: true }
 });
 
-const mySchema = new Schema({
+const orderSchema = new Schema({
   descripcion: { type: String, required: true },
   tecnico: { type: String, required: true },
   cliente: { type: String, required: true },
   Etapa: { type: [etapaSchema], required: false }
-});
+},{
+  timestamps: true,
+  versionKey: false
+}
+);
 
-const MyModel = mongoose.model('MyModel', mySchema);
+export default model('Order', orderSchema);
 
-module.exports = MyModel;

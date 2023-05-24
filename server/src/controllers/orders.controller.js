@@ -1,5 +1,7 @@
-export const createOrder = (req, res) => {
+import Order from "../models/Order"
 
+export const createOrder = (req, res) => {
+    res.json('Creating order')
 }
 
 export const getOrder = (req, res) => {
