@@ -1,7 +1,16 @@
 import Order from "../models/Order"
 
-export const createOrder = (req, res) => {
-    res.json('Creating order')
+export const createOrder = async (req, res) => {
+    
+    const {descripcion, tecnico, cliente, Etapa} = req.body
+
+    const newOrder = new Order({descripcion, tecnico, cliente, Etapa})
+
+    const orderSaved = await newOrder.save()
+
+    console.log(newOrder)
+    
+    res.status(201).json(orderSaved)
 }
 
 export const getOrder = (req, res) => {
