@@ -9,26 +9,37 @@ export const createOrder = async (req, res) => {
     const orderSaved = await newOrder.save()
 
     console.log(newOrder)
-    
+
     res.status(201).json(orderSaved)
 }
 
-export const getOrder = (req, res) => {
-    
+export const getOrders = async (req, res) => {
+        
+    const orders = await Order.find()
+
+    res.status(200).json(orders)
 }
 
-export const getOrders = (req, res) => {
-    res.json('get Orders All')
+export const getOrderById = async (req, res) => {
+
+    const order = await Order.findById(req.params.orderId)
+
+    res.json(order)
 }
 
-export const getOrderById = (req, res) => {
+export const updateOrderById = async (req, res) => {
+
+    const updatedOrder = await Order.findByIdAndUpdate(req.params.orderId, req.body,
+    {
+        new: true
+    })
     
+    res.status(200).json(updatedOrder)
 }
 
-export const updateOrderById = (req, res) => {
-    
-}
+export const deleteOrder = async (req, res) => {
 
-export const deleteOrder = (req, res) => {
-    
+    await Order.findOneAndDelete(req.params.orderId)
+
+    res.status(204).json()
 }
