@@ -7,7 +7,8 @@ import { authJwt, verifySignUp } from '../middlewares'
 router.post('/', [
     authJwt.verifyToken,
     authJwt.isLead,
-    verifySignUp.checkRolesExisted
+    verifySignUp.checkRolesExisted,
+    verifySignUp.checkDuplicateUser
 ], userCtrl.createUser)
 
 export default router

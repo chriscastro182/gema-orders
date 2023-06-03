@@ -142,7 +142,43 @@
 		},
 		{
 			"name": "Users",
-			"item": []
+			"item": [
+				{
+					"name": "users/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzNhZjg3NGNjMmY1ODhkMDI5ZWMxZSIsImlhdCI6MTY4NTgxODg5MywiZXhwIjoxNjg1ODI2MDkzfQ.HMsf3Gdnee-v335UuSuW40-mk1P31Y88msfthAZkhz4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Roberto\",\r\n    \"lastname\": \"Trujillo\",\r\n    \"password\": \"password\",\r\n    \"email\": \"roberto@metallica.com\",\r\n    \"company\": \"647b8fb183b01648a880b082\",\r\n    \"roles\": [\"superadmin\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Auth",
