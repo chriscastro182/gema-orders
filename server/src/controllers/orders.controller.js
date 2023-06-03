@@ -8,8 +8,6 @@ export const createOrder = async (req, res) => {
 
     const orderSaved = await newOrder.save()
 
-    console.log(newOrder)
-
     res.status(201).json(orderSaved)
 }
 

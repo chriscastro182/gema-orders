@@ -9,21 +9,54 @@
 			"name": "Orders",
 			"item": [
 				{
-					"name": "Get Products",
+					"name": "orders/",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "POST Orders",
+					"name": "orders/orderId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/orders/646eee58793945dec4cccf79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders",
+								"646eee58793945dec4cccf79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descripcion\": \"Orden de prueba\",\r\n    \"tecnico\": \"Fulano\",\r\n    \"cliente\": \"Sultano\",\r\n    \"Etapa\": []\r\n}",
+							"raw": "{\r\n    \"descripcion\": \"Test 3 to be deleted\",\r\n    \"tecnico\": \"Un pendejo\",\r\n    \"cliente\": \"Otro Pendejo\",\r\n    \"Etapa\": []\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -31,14 +64,75 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/orders",
+							"raw": "http://localhost:3000/api/orders",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders/orderId",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Orden de prueba edited\",\r\n    \"tecnico\": \"Fulano editado\",\r\n    \"cliente\": \"Sultano modificado 2\",\r\n    \"Etapa\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/orders/646eee58793945dec4cccf79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders",
+								"646eee58793945dec4cccf79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders/orderId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Orden de prueba edited\",\r\n    \"tecnico\": \"Fulano editado\",\r\n    \"cliente\": \"Sultano modificado 2\",\r\n    \"Etapa\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/orders/6472ea66e36b95a04cf4295b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders",
+								"6472ea66e36b95a04cf4295b"
 							]
 						}
 					},
@@ -52,7 +146,50 @@
 		},
 		{
 			"name": "Auth",
-			"item": []
+			"item": [
+				{
+					"name": "/api/auth/signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

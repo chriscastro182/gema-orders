@@ -7,6 +7,10 @@ import bcrypt from 'bcryptjs'
         type: String, 
         required: true 
     },
+    lastname: { 
+      type: String, 
+      required: true 
+    },
     password: { 
         type: String, 
         required: true 
@@ -15,6 +19,10 @@ import bcrypt from 'bcryptjs'
         type: String, 
         required: true, 
         unique:true 
+    },
+    empresa: {
+      ref: "Company",
+      type: Schema.Types.ObjectId
     },
     roles: [{
         ref: "Role",
