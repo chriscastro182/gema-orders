@@ -29,5 +29,8 @@ app.use('/api/orders',orderRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/auth',authRoutes)
 
+app.get('/abc/', function(req, res) {
+    console.log('hola');
+});
 
 export default app;
