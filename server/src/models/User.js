@@ -7,10 +7,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  lastname: {
+  /*lastname: {
     type: String,
     required: true
-  },
+  },*/
   password: {
     type: String,
     required: true
@@ -20,10 +20,10 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  empresa: {
+  /*empresa: {
     ref: "Company",
     type: Schema.Types.ObjectId
-  },
+  },*/
   roles: [{
     ref: "Role",
     type: Schema.Types.ObjectId

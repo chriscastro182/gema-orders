@@ -1,7 +1,19 @@
 import User from "../models/User"
 
-export const createUser = (req, res) => {
+export const createUser = async (req, res) => {
 
-    res.json({message: "creating user"})
-    
-}
+    const { name, password, email, roles } = req.body
+
+    const newUser = new User(
+        {
+            name,
+            password: await User.encryptPass(password), 
+            email, 
+            roles
+        }
+    )
+
+    const userSaved = await newUser.save()
+
+    res.status(201).json(userSaved)
+}     
