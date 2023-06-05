@@ -11,6 +11,8 @@ import { PagesnavbarModule} from './shared/pagesnavbar/pagesnavbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
     imports:      [
@@ -23,7 +25,8 @@ import { AppRoutes } from './app.routing';
         NavbarModule,
         FooterModule,
         FixedPluginModule,
-        PagesnavbarModule
+        PagesnavbarModule,
+        HttpClientModule
     ],
     declarations: [
         AppComponent,

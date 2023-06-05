@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import pkg from '../package.json'
+import cors from 'cors'
 
 import { createRoles } from './libs/initialSetup'
 
@@ -9,10 +10,12 @@ import authRoutes from './routes/auth.routes'
 import userRoutes from './routes/user.routes'
 
 const app = express()
+//const cors = requre('cors')
 createRoles();
 
 app.set('pkg', pkg)
 
+app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
 
