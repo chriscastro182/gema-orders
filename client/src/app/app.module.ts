@@ -11,7 +11,10 @@ import { PagesnavbarModule} from './shared/pagesnavbar/pagesnavbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+
 
 
 @NgModule({
@@ -27,6 +30,15 @@ import { HttpClientModule } from '@angular/common/http';
         FixedPluginModule,
         PagesnavbarModule,
         HttpClientModule
+    ],
+    providers:[
+        AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true
+        }
+        
     ],
     declarations: [
         AppComponent,

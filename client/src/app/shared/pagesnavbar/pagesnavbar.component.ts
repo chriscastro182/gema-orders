@@ -1,6 +1,8 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, Directive } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { AuthService } from 'app/services/auth.service';
+
 
 declare var $: any;
 
@@ -18,7 +20,7 @@ export class PagesnavbarComponent implements OnInit{
 
     @ViewChild("pagesnavbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer2, private element : ElementRef) {
+    constructor(location:Location, private renderer : Renderer2, private element : ElementRef, public authService: AuthService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;

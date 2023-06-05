@@ -17,18 +17,21 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
-                    <a routerLinkActive="active" [routerLink]="['/pages/login']">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        <p>Inicio Sesión</p>
-                    </a>
-                </li>
-                <li>
-                    <a routerLinkActive="active" [routerLink]="['/pages/register']">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        <p>Registro</p>
-                    </a>
-                </li>
+                <ng-container *ngIf="!authService.loggedIn()">
+                    <li>
+                        <a routerLinkActive="active" [routerLink]="['/pages/login']">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <p>Inicio Sesión</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLinkActive="active" [routerLink]="['/pages/register']">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            <p>Registro</p>
+                        </a>
+                    </li>
+
+                </ng-container>
                 <!-- 
                 <li>
                     <a routerLinkActive="active" [routerLink]="['/pages/lock']">
