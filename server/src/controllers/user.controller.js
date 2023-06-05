@@ -26,3 +26,36 @@ export const createUser = async (req, res) => {
 
     res.status(201).json(userSaved)
 }     
+
+export const getUsers = async (req, res) => {
+        
+    const users = await User.find()
+
+    res.status(200).json(users)
+}
+
+
+export const getUserById = async (req, res) => {
+
+    const user = await User.findById(req.params.userId)
+
+    res.json(user)
+}
+
+export const deleteUser = async (req, res) => {
+
+    await User.findOneAndDelete(req.params.userId)
+
+    res.status(204).json()
+}
+
+
+export const updateUserById = async (req, res) => {
+
+    const updatedUser = await User.findByIdAndUpdate(req.params.userId, req.body,
+    {
+        new: true
+    })
+    
+    res.status(200).json(updatedUser)
+}
