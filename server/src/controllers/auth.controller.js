@@ -4,7 +4,7 @@ import config from '../config'
 import Role from '../models/Role'
 
 export const signIn = async (req, res) => {
-
+    console.log(req.body);
     const userFound = await User.findOne({email: req.body.email}).populate("roles")
 
     if (!userFound) return res.status(400).json({message: "User not found"})
@@ -17,9 +17,9 @@ export const signIn = async (req, res) => {
         expiresIn: 7200 // 2 hours
     })
 
-    //console.log(userFound);
+    delete userFound.password;
 
-    res.json({token })
+    res.json({token, userFound })
 }
 
 export const signUp = async (req, res) => {
