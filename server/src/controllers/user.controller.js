@@ -1,4 +1,5 @@
 import User from "../models/User"
+import Role from "../models/Role"
 
 export const createUser = async (req, res) => {
 
@@ -14,13 +15,13 @@ export const createUser = async (req, res) => {
             roles
         }
     )
-    if (roles) {
+    /*if (roles) {
         const foundRoles = await Role.find({rol: {$in: roles}})
         newUser.roles = foundRoles.map( role => role._id)
     } else {
         const role = await Role.findOne({rol: "user"})
         newUser.roles = [role._id]
-    }
+    }*/
 
     const userSaved = await newUser.save()
 
