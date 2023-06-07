@@ -5,23 +5,23 @@ import * as technicianController from "../controllers/technician.controller"
 import { authJwt, verifySignUp } from '../middlewares'
 
 router.get('/',
-    [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
+    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.getTechnicians)
 
 router.post('/',
-    [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin],
+    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead],
         technicianController.createTechnician)
 
 router.get('/:technicianId',
-    [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
+    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.getTechnicianById)
 
 router.delete('/:technicianId', 
-    [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
+    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.deleteTechnician)
 
 router.put('/:technicianId', 
-    [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
+    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.updateTechnicianById)
 
 export default router 
