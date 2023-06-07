@@ -23,12 +23,13 @@ export const signIn = async (req, res) => {
 }
 
 export const signUp = async (req, res) => {
-    const {name, email, password, roles} = req.body;
+    const {name, lastname, email, password, roles} = req.body;
 
     const userFound = User.find({email})
 
     const newUser = new User({
         name,
+        lastname,
         email,
         password: await User.encryptPass(password)
     })
