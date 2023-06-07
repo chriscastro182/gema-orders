@@ -1,28 +1,27 @@
 import { Router } from "express"
 const router = Router()
 
-import * as userController from "../controllers/user.controller"
+import * as technicianController from "../controllers/technician.controller"
 import { authJwt, verifySignUp } from '../middlewares'
 
 router.get('/',
     [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
-    userController.getUsers)
+    technicianController.getTechnicians)
 
 router.post('/',
     [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin],
-    userController.createUser)
+        technicianController.createTechnician)
 
-router.get('/:userId',
+router.get('/:technicianId',
     [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
-    userController.getUserById)
+    technicianController.getTechnicianById)
 
-router.delete('/:userId', 
+router.delete('/:technicianId', 
     [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
-    userController.deleteUser)
+    technicianController.deleteTechnician)
 
-router.put('/:userId', 
+router.put('/:technicianId', 
     [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin], 
-    userController.updateUserById)
+    technicianController.updateTechnicianById)
 
 export default router 
-

@@ -8,6 +8,7 @@ import { createRoles } from './libs/initialSetup'
 import orderRoutes from './routes/orders.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from './routes/user.routes'
+import technicianRoutes from './routes/technician.routes'
 
 const app = express()
 //const cors = requre('cors')
@@ -31,5 +32,7 @@ app.get('/', (req, res)=> {
 app.use('/api/orders',orderRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/auth',authRoutes)
+app.use('/api/technicians',technicianRoutes)
+
 
 export default app;
