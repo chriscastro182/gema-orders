@@ -43,8 +43,12 @@ export class LoginComponent implements OnInit{
     signup(){
         this.authService.signIn(this.user).subscribe(
             res => {
-                localStorage.setItem('token', res.token);
-                this.router.navigate(['/pages/user'])
+                
+                if (res.token) {
+                    localStorage.setItem('token', res.token);
+                    this.router.navigate(['/user/user'])
+                    
+                }
             },
             err => console.error(err)
         )

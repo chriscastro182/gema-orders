@@ -24,7 +24,7 @@ export const ROUTES: RouteInfo[] = [{
         title: 'Dashboard',
         type: 'link',
         icontype: 'pe-7s-graph'
-    },{
+    }/* ,{
         path: '/components',
         title: 'Components',
         type: 'sub',
@@ -59,7 +59,16 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'extended', title: 'Extended Tables', ab:'ET'},
             {path: 'datatables.net', title: 'Datatables.net', ab:'DT'}
         ]
-    },{
+    } */,{
+        path: '/user',
+        title: 'Usuarios',
+        type: 'sub',
+        icontype: 'pe-7s-users',
+        children: [
+            {path: 'user', title: 'Perfil', ab:'PE'},
+            {path: 'users', title: 'Usuarios', ab:'US'}
+        ]
+    }/* ,{
         path: '/maps',
         title: 'Maps',
         type: 'sub',
@@ -91,7 +100,7 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'register', title: 'Register Page', ab:'RP'},
             {path: 'lock', title: 'Lock Screen Page', ab:'LSP'}
         ]
-    }
+    } */
 ];
 
 @Component({
