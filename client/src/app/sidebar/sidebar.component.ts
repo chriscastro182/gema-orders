@@ -66,7 +66,9 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'pe-7s-users',
         children: [
             {path: 'user', title: 'Perfil', ab:'PE'},
-            {path: 'users', title: 'Usuarios', ab:'US'}
+            {path: 'users', title: 'Usuarios', ab:'US'},
+            {path: 'clients', title: 'Clientes', ab:'CL'},
+            {path: 'technicans', title: 'Técnicos', ab:'TN'}
         ]
     }/* ,{
         path: '/maps',
