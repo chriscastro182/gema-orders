@@ -1,5 +1,6 @@
 import User from "../models/User"
 import Role from "../models/Role"
+import Enterprise from "../models/Enterprise"
 
 export const createUser = async (req, res) => {
 
@@ -23,6 +24,14 @@ export const createUser = async (req, res) => {
         newUser.roles = [role._id]
     }
 
+    if (empresa) {
+        const enterprise = await Enterprise.findOne({ name: empresa })
+        newUser.empresa = [enterprise._id]
+    } else {
+        const enterprise = await Enterprise.findOne({ name: "GEMA" })
+        newUser.empresa = [enterprise._id]
+    }
+
     const userSaved = await newUser.save()
 
     res.status(201).json(userSaved)
@@ -30,7 +39,7 @@ export const createUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {
 
-    const users = await User.find()
+    const users = await User.find().populate("roles").populate("empresa")
 
     res.status(200).json(users)
 }

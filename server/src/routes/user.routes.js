@@ -5,7 +5,7 @@ import * as userController from "../controllers/user.controller"
 import { authJwt, verifySignUp } from '../middlewares'
 
 router.get('/',
-    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
+    [authJwt.verifyToken, authJwt.isLead], 
     userController.getUsers)
 
 router.post('/',

@@ -21,7 +21,7 @@ const userSchema = new Schema({
     unique: true
   },
   empresa: {
-    ref: "Company",
+    ref: "Enterprise",
     type: Schema.Types.ObjectId
   },
   roles: [{

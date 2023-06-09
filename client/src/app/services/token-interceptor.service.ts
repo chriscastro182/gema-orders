@@ -12,7 +12,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(req, next):any {
     const tokenizeReq = req.clone({
       setHeaders: {
-        Authorization: !this.atuhService.getToken() ? '': this.atuhService.getToken()
+        "x-access-token": !this.atuhService.getToken() ? '': this.atuhService.getToken()
       }
     });
     
