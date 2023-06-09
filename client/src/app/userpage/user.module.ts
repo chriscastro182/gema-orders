@@ -7,7 +7,7 @@ import { UserComponent } from './user.component';
 import { UserRoutes } from './user.routing';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
-import { TechnicansComponent } from './technicans/technicans.component';
+import { TechnicansComponent } from './technicans/technicians.component';
 
 @NgModule({
     imports: [

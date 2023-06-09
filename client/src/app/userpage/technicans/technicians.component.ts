@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from 'app/Models/Client.model'
-import { ClientsService } from 'app/services/clients.service';
+import { Technician } from 'app/Models/Technician.model';
+import { TechniciansService } from 'app/services/technicians.service';
 declare var $:any;
 
 declare interface DataTable {
@@ -10,52 +10,55 @@ declare interface DataTable {
 }
 
 @Component({
-  selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss']
+  selector: 'app-technicians',
+  templateUrl: './technicians.component.html',
+  styleUrls: ['./technicians.component.scss']
 })
-export class ClientsComponent implements OnInit {
 
-  Clients: [Client]
-  constructor(private clientService: ClientsService) { }
+export class TechnicansComponent implements OnInit {
+
+  Technicians: [Technician]
+
+  constructor(private technicianService: TechniciansService) { }
 
   public dataTable: DataTable;
-  async ngOnInit() {
-    await this.clientService.getClients().subscribe(
+  async ngOnInit(){
+
+    await this.technicianService.getTechnicians().subscribe(
       res => {
         console.log(res)
         this.populateDataRow(res)
       },
       err => console.log(err)
     );
+
   }
 
-  populateDataRow(clients) {
-    if (clients) {
-      this.Clients = clients;
+  populateDataRow(technicians) {
+    if (technicians) {
+      this.Technicians = technicians;
       let rows = [];
  
-      this.Clients.forEach(user => {
+      this.Technicians.forEach(user => {
         const newRow = [
-          user.name.toString(),
-          user.lastname.toString(),
-          user.email.toString(),
+          user.numemployee.toString(),
           user.phone.toString(),
+          user.user.toString(),
           user.createdAt.toString(),
           ''
         ];
         rows.push(newRow);
       });
       this.dataTable = {
-        headerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
-        footerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
+        headerRow: ['Número de Empleado', 'Teléfono', 'Usuario', 'Fecha Creación', 'Acciones'],
+        footerRow: ['Número de Empleado', 'Teléfono', 'Usuario', 'Fecha Creación', 'Acciones'],
         dataRows: rows
       };
 
     } else {
       this.dataTable = {
-        headerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
-        footerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
+        headerRow: ['Número de Empleado', 'Teléfono', 'Usuario', 'Fecha Creación', 'Acciones'],
+        footerRow: ['Número de Empleado', 'Teléfono', 'Usuario', 'Fecha Creación', 'Acciones'],
         dataRows: [
           ['Airi Satou', 'Andrew Mike', 'Develop', '2013', '99,225', ''],
           ['Angelica Ramos', 'John Doe', 'Design', '2012', '89,241', 'btn-round'],
