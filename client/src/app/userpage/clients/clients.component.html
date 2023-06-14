@@ -2,10 +2,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="title">Usuarios</h4>
-                <p class="category">Este módulo está diseñado para el Líder o Administrador</p>
+                <h4 class="title">Clientes</h4>
+                <button class="btn btn-success pull-right" (click)="activeModalComponent($event)"
+                data-toggle="modal" data-target="#clientModal">Agregar Cliente</button>
 
-                <br>
+                <p class="category">Este módulo está diseñado para el Líder o Administrador</p>
                 <div class="card">
                     <div class="content">
                         <h4 class="title">Clientes</h4>
@@ -63,3 +64,8 @@
         <!-- end row -->
     </div>
 </div>
+
+<app-add-client-modal *ngIf="activeModal"
+[activeModalComponent]='activeModalComponent'>
+
+</app-add-client-modal>

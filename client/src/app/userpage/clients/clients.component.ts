@@ -19,7 +19,8 @@ export class ClientsComponent implements OnInit {
   Clients: [Client]
   constructor(private clientService: ClientsService) { }
 
-  public dataTable: DataTable;
+  public dataTable: DataTable;  
+  activeModal:Boolean = false;
   async ngOnInit() {
     await this.clientService.getClients().subscribe(
       res => {
@@ -73,6 +74,10 @@ export class ClientsComponent implements OnInit {
     }
   }
 
+  activeModalComponent = (e) => {
+    this.activeModal = !this.activeModal;
+  }
+  
   ngAfterViewInit() {
     $('#datatables').DataTable({
       "pagingType": "full_numbers",

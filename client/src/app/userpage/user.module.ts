@@ -8,6 +8,7 @@ import { UserRoutes } from './user.routing';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
 import { TechnicansComponent } from './technicans/technicians.component';
+import { AddClientModalComponent } from './clients/add-client-modal/add-client-modal.component';
 
 @NgModule({
     imports: [
@@ -15,7 +16,7 @@ import { TechnicansComponent } from './technicans/technicians.component';
         RouterModule.forChild(UserRoutes),
         FormsModule
     ],
-    declarations: [UserComponent, UsersComponent, ClientsComponent, TechnicansComponent]
+    declarations: [UserComponent, UsersComponent, ClientsComponent, TechnicansComponent, AddClientModalComponent]
 })
 
 export class UserModule {}
