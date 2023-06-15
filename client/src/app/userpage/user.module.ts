@@ -7,9 +7,11 @@ import { UserComponent } from './user.component';
 import { UserRoutes } from './user.routing';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
-import { TechnicansComponent } from './technicans/technicians.component';
+import { TechniciansComponent } from './technicians/technicians.component';
 import { AddClientModalComponent } from './clients/add-client-modal/add-client-modal.component';
 import { DeleteClientModalComponent } from './clients/delete-client-modal/delete-client-modal.component';
+import { AddTechniciansModalComponent } from './technicians/add-technicians-modal/add-technicians-modal.component';
+import { DeleteTechniciansModalComponent } from './technicians/delete-technicians-modal/delete-technicians-modal.component';
 
 @NgModule({
     imports: [
@@ -17,7 +19,7 @@ import { DeleteClientModalComponent } from './clients/delete-client-modal/delete
         RouterModule.forChild(UserRoutes),
         FormsModule
     ],
-    declarations: [UserComponent, UsersComponent, ClientsComponent, TechnicansComponent, AddClientModalComponent, DeleteClientModalComponent]
+    declarations: [UserComponent, UsersComponent, ClientsComponent, TechniciansComponent, AddClientModalComponent, DeleteClientModalComponent, AddTechniciansModalComponent, DeleteTechniciansModalComponent]
 })
 
 export class UserModule {}

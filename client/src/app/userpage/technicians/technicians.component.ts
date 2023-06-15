@@ -15,13 +15,14 @@ declare interface DataTable {
   styleUrls: ['./technicians.component.scss']
 })
 
-export class TechnicansComponent implements OnInit {
+export class TechniciansComponent implements OnInit {
 
   Technicians: [Technician]
 
   constructor(private technicianService: TechniciansService) { }
 
   public dataTable: DataTable;
+  activeModal:Boolean = false;
   async ngOnInit(){
 
     await this.technicianService.getTechnicians().subscribe(
@@ -74,6 +75,11 @@ export class TechnicansComponent implements OnInit {
         ]
       };
     }
+  }
+
+  
+  activeModalComponent = (e) => {
+    this.activeModal = !this.activeModal;
   }
 
   ngAfterViewInit() {

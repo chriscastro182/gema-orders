@@ -24,8 +24,8 @@ export class ClientsComponent implements OnInit {
   activeDeleteModal:Boolean = false;
   Cliente:Client;
 
-  ngOnInit() {
-    this.getAllClients();
+  async ngOnInit() {
+    await this.getAllClients();
   }
 
   async getAllClients(){
@@ -35,7 +35,7 @@ export class ClientsComponent implements OnInit {
         this.populateDataRow(res)
       },
       err => console.log(err)
-    ).unsubscribe();
+    );
   }
 
   populateDataRow(clients) {

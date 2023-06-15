@@ -3,6 +3,8 @@
         <div class="row">
             <div class="col-md-12">
                 <h4 class="title">Técnicos</h4>
+                <button class="btn btn-success pull-right" (click)="activeModalComponent($event)"
+                data-toggle="modal" data-target="#technicianModal">Agregar Técnico</button>
                 <p class="category">Este módulo está diseñado para el Líder o Administrador</p>
 
                 <br>
@@ -63,3 +65,9 @@
         <!-- end row -->
     </div>
 </div>
+
+
+<app-add-technicians-modal *ngIf="activeModal"
+[activeModalComponent]='activeModalComponent'>
+</app-add-technicians-modal>
+

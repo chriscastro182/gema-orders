@@ -4,7 +4,7 @@ import { UserComponent } from './user.component';
 import { AuthGuard } from 'app/auth.guard';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
-import { TechnicansComponent } from './technicans/technicians.component';
+import { TechniciansComponent } from './technicians/technicians.component';
 
 
 export const UserRoutes: Routes = [{
@@ -23,7 +23,7 @@ export const UserRoutes: Routes = [{
         canActivate: [AuthGuard]
     },{
         path: 'user/technicans',
-        component: TechnicansComponent,
+        component: TechniciansComponent,
         canActivate: [AuthGuard]
     }]
 }];
