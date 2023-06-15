@@ -45,7 +45,8 @@
                                             <td>{{row[4]}}</td>
                                             <td class="text-right">
                                                 <a class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                                                <a class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                                                <a class="btn btn-simple btn-danger btn-icon remove" (click)="removeClient(row[6])"
+                                                data-toggle="modal" data-target="#deleteClientModal"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -69,3 +70,12 @@
 [activeModalComponent]='activeModalComponent'>
 
 </app-add-client-modal>
+
+
+<app-delete-client-modal *ngIf="activeDeleteModal"
+[activeDeleteModalComponent]="activeDeleteModalComponent"
+[cliente]="Cliente"
+[getAllClients]="getAllClients"
+>
+
+</app-delete-client-modal>

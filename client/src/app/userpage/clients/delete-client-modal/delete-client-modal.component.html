@@ -1,18 +1,17 @@
 <!-- Modal -->
-<div class="modal fade" id="clientModal" tabindex="-1" role="dialog" aria-labelledby="clientModalLabel">
+<div class="modal fade" id="deleteClientModal" tabindex="-1" role="dialog" aria-labelledby="deleteClientModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal($event)"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="clientModalLabel">Agregar Cliente</h4>
+            <h4 class="modal-title" id="deleteClientModalLabel">Eliminar Cliente</h4>
         </div>
         <div class="modal-body">
-            ...
-            <!-- <input type="text" [(ngModel)]="Cliente.folio"> -->
+            Estás seguro que deseas eliminar a: {{ cliente.name }} {{ cliente.lastname }}
         </div>
         <div class="modal-footer">
             <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-success btn-fill">Guardar</button>
+            <button type="button" class="btn btn-danger btn-fill">Eliminar</button>
         </div>
         </div>
     </div>

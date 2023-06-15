@@ -21,14 +21,21 @@ export class ClientsComponent implements OnInit {
 
   public dataTable: DataTable;  
   activeModal:Boolean = false;
-  async ngOnInit() {
+  activeDeleteModal:Boolean = false;
+  Cliente:Client;
+
+  ngOnInit() {
+    this.getAllClients();
+  }
+
+  async getAllClients(){
     await this.clientService.getClients().subscribe(
       res => {
         console.log(res)
         this.populateDataRow(res)
       },
       err => console.log(err)
-    );
+    ).unsubscribe();
   }
 
   populateDataRow(clients) {
@@ -43,7 +50,8 @@ export class ClientsComponent implements OnInit {
           user.email.toString(),
           user.phone.toString(),
           user.createdAt.toString(),
-          ''
+          '',
+          user._id
         ];
         rows.push(newRow);
       });
@@ -75,7 +83,24 @@ export class ClientsComponent implements OnInit {
   }
 
   activeModalComponent = (e) => {
+
     this.activeModal = !this.activeModal;
+
+  }
+
+  activeDeleteModalComponent = () => {
+
+    this.activeDeleteModal = !this.activeDeleteModal;
+
+  }
+
+  removeClient = (id:string) => {
+
+    this.Cliente = this.Clients.find(C => C._id === id);
+    
+    //console.log("Me van a borrar, soy Id: ", this.Cliente);
+
+    this.activeDeleteModalComponent();
   }
   
   ngAfterViewInit() {
@@ -114,5 +139,6 @@ export class ClientsComponent implements OnInit {
       alert('You clicked on Like button');
     });
   }
+
 
 }
