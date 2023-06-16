@@ -46,7 +46,8 @@
                                             <td>{{row[4]}}</td>
                                             <td class="text-right">
                                                 <a class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                                                <a class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                                                <a class="btn btn-simple btn-danger btn-icon remove" (click)="removeTechnician(row[5])"
+                                                data-toggle="modal" data-target="#deleteTechnicianModal"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -70,4 +71,11 @@
 <app-add-technicians-modal *ngIf="activeModal"
 [activeModalComponent]='activeModalComponent'>
 </app-add-technicians-modal>
+
+
+<app-delete-technicians-modal *ngIf="activeDeleteModal"
+[activeDeleteModalComponent]='activeDeleteModalComponent'
+[technician]="Technician"
+>
+</app-delete-technicians-modal>
 

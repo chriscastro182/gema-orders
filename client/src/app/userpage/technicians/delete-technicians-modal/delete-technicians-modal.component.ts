@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Technician } from 'app/Models/Technician.model';
 
 @Component({
   selector: 'app-delete-technicians-modal',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteTechniciansModalComponent implements OnInit {
 
+  @Input() activeDeleteModal:           boolean;  
+  @Input() activeDeleteModalComponent:  Function;
+  @Input() technician:                  Technician;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  
+  closeModal(e){
+    this.activeDeleteModalComponent();
   }
 
 }

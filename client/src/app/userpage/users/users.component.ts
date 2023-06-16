@@ -19,6 +19,8 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   public dataTable: DataTable;
+  activeModal:Boolean = false;
+
   async ngOnInit(){
       
        await this.userService.getUsers().subscribe(
@@ -71,6 +73,11 @@ export class UsersComponent implements OnInit {
             ]
          };
     }
+  }
+
+  activeModalComponent = (e) => {
+    console.log('entra')
+    this.activeModal = !this.activeModal;
   }
 
   ngAfterViewInit(){

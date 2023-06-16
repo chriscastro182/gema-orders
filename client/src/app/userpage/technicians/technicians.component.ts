@@ -23,6 +23,9 @@ export class TechniciansComponent implements OnInit {
 
   public dataTable: DataTable;
   activeModal:Boolean = false;
+  activeDeleteModal:Boolean = false;
+  Technician:Technician;
+
   async ngOnInit(){
 
     await this.technicianService.getTechnicians().subscribe(
@@ -46,7 +49,8 @@ export class TechniciansComponent implements OnInit {
           user.phone.toString(),
           user.user.toString(),
           user.createdAt.toString(),
-          ''
+          '',
+          user._id
         ];
         rows.push(newRow);
       });
@@ -80,6 +84,16 @@ export class TechniciansComponent implements OnInit {
   
   activeModalComponent = (e) => {
     this.activeModal = !this.activeModal;
+  }
+
+  activeDeleteModalComponent = () => {
+    console.log('padre')
+    this.activeDeleteModal = !this.activeDeleteModal;
+  }
+
+  removeTechnician = (id:string) => {
+    this.Technician = this.Technicians.find(C => C._id === id);
+    this.activeDeleteModalComponent();
   }
 
   ngAfterViewInit() {
