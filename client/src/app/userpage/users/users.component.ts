@@ -20,6 +20,8 @@ export class UsersComponent implements OnInit {
 
   public dataTable: DataTable;
   activeModal:Boolean = false;
+  activeDeleteModal:Boolean = false;
+  User:User;
 
   async ngOnInit(){
       
@@ -44,7 +46,8 @@ export class UsersComponent implements OnInit {
                             user.email.toString(), 
                             user.empresa.name.toString(), 
                             user.createdAt.toString(),
-                            ''
+                            '',
+                            user._id
                             ];
             rows.push(newRow);
         });
@@ -76,10 +79,19 @@ export class UsersComponent implements OnInit {
   }
 
   activeModalComponent = (e) => {
-    console.log('entra')
     this.activeModal = !this.activeModal;
   }
 
+  activeDeleteModalComponent = () =>
+  {
+    this.activeDeleteModal = !this.activeDeleteModal;
+  } 
+
+  removeUser = (id:string) => {
+
+    this.User = this.Users.find(C => C._id === id);
+    this.activeDeleteModalComponent();
+  }
   ngAfterViewInit(){
 
       $('#datatables').DataTable({

@@ -48,7 +48,8 @@
                                             <td>{{row[4]}}</td>
                                             <td class="text-right">
                                                 <a class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                                                <a class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                                                <a class="btn btn-simple btn-danger btn-icon remove"
+                                                (click)="removeUser(row[6])" data-toggle="modal" data-target="#deleteUserModal"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -72,3 +73,10 @@
 <app-add-users-modal *ngIf="activeModal"
 [activeModalComponent]='activeModalComponent'>
 </app-add-users-modal>
+
+
+<app-delete-users-modal *ngIf="activeDeleteModal"
+[activeDeleteModalComponent]='activeDeleteModalComponent'
+[user]='User'>
+
+</app-delete-users-modal>
