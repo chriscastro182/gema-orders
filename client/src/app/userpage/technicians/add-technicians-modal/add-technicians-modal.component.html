@@ -1,19 +1,44 @@
 <!-- Modal -->
 <div class="modal fade" id="technicianModal" tabindex="-1" role="dialog" aria-labelledby="technicianModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal($event)"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="technicianModalLabel">Agregar Técnico</h4>
-        </div>
-        <div class="modal-body">
-            ...
-            <!-- <input type="text" [(ngModel)]="Cliente.folio"> -->
-        </div>
-        <div class="modal-footer">
-            <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-success btn-fill">Guardar</button>
-        </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeModal($event)"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="technicianModalLabel">Agregar Técnico</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="name">Número de Empleado</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Número de Empleado">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="lastname">Teléfono</label>
+                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="enterprise">Usuario</label>
+                            <select class="form-control" id="enterprise">
+                                <option value="">Seleccionar Usuario</option>
+                                <option *ngFor="let user of users; index as i; first as isFirst"
+                                    value="{{ user.id }}">{{ user.name + ' ' + user.lastname }} </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple"
+                    data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success btn-fill">Guardar</button>
+            </div>
         </div>
     </div>
 </div>

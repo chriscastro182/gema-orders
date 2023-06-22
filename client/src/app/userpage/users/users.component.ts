@@ -15,7 +15,8 @@ declare interface DataTable {
 })
 export class UsersComponent implements OnInit {
 
-    Users:[User];
+  Users:[User]
+
   constructor(private userService: UsersService) { }
 
   public dataTable: DataTable;
@@ -27,7 +28,7 @@ export class UsersComponent implements OnInit {
       
        await this.userService.getUsers().subscribe(
         res => {
-            console.log(res)
+            //console.log(res)
             this.populateDataRow(res)
         },
         err => console.log(err)
@@ -35,11 +36,13 @@ export class UsersComponent implements OnInit {
   }
 
   populateDataRow(users){
+    console.log(users)
     if (users) {
         this.Users = users;
         let rows = [];
 
         this.Users.forEach(user => {
+            console.log(user)
             const newRow = [
                             user.name.toString(),
                             user.lastname.toString(), 

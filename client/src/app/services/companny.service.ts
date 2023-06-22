@@ -7,7 +7,7 @@ import { Companny } from 'app/Models/Companny.model';
 })
 export class CompaniesService {
 
-    private URL = 'http://localhost:3000/api/families'
+    private URL = 'http://localhost:3000/api/enterprises/'
 
     constructor(private http: HttpClient) { }
 

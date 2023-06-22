@@ -12,7 +12,7 @@ export class AddUsersModalComponent implements OnInit {
   @Input() activeModal:           boolean;  
   @Input() activeModalComponent:  Function;
 
-  company:Companny
+  company:Companny;
   companies:[Companny];
 
   constructor(private companyService: CompaniesService) { }
@@ -21,6 +21,7 @@ export class AddUsersModalComponent implements OnInit {
     await this.companyService.getFamilies().subscribe(
       res => {
           console.log(res)
+          this.companies = res;
           //this.populateDataRow(res)
       },
       err => console.log(err)
