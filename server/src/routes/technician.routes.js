@@ -5,11 +5,11 @@ import * as technicianController from "../controllers/technician.controller"
 import { authJwt, verifySignUp } from '../middlewares'
 
 router.get('/',
-    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
+    [authJwt.verifyToken, authJwt.isLead], 
     technicianController.getTechnicians)
 
 router.post('/',
-    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead],
+    [authJwt.verifyToken, authJwt.isLead],
         technicianController.createTechnician)
 
 router.get('/:technicianId',

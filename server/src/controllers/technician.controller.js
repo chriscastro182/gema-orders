@@ -20,7 +20,7 @@ export const createTechnician = async (req, res) => {
 
 export const getTechnicians = async (req, res) => {
 
-    const technicians = await Technician.find()
+    const technicians = await Technician.find().populate("user")
 
     res.status(200).json(technicians)
 }
@@ -28,7 +28,7 @@ export const getTechnicians = async (req, res) => {
 
 export const getTechnicianById = async (req, res) => {
 
-    const technician = await Technician.findById(req.params.technicianId)
+    const technician = await Technician.findById(req.params.technicianId).populate("user")
 
     res.json(technician)
 }

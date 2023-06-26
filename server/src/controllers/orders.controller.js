@@ -1,4 +1,6 @@
 import Order from "../models/Order"
+import Technician from "../models/Technician"
+import User from "../models/User"
 
 export const createOrder = async (req, res) => {
     
@@ -24,6 +26,20 @@ export const getOrderById = async (req, res) => {
 
     res.json(order)
 }
+
+export const ordersBytechnician = async (req, res) => {
+    
+    const tecnico = await Technician.findById(req.params.technicianId).populate("user")
+
+    const orders = await Order.find({tecnico: req.params.technicianId})
+                                        .populate("tecnico")
+                                        .populate("cliente");
+
+    orders.forEach(o =>  o.tecnico = tecnico );
+
+    await res.json(orders)
+}
+
 
 export const updateOrderById = async (req, res) => {
 
