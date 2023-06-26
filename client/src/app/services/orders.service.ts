@@ -8,15 +8,13 @@ import { Order } from 'app/Models/Order.model';
 export class OrdersService {
 
   private URL = 'http://localhost:3000/api/orders';
-  
+
   constructor(private http: HttpClient) { }
 
-  getOrdersById(id:number)
+  getOrdersById(id:string)
   {
-
-    let queryParams = new HttpParams().append("_id",id);
     
-    return this.http.get<[Order]>(this.URL, {params: queryParams} );
+    return this.http.get<[Order]>(this.URL+"/ordersBytechnician/"+id);
 
   }
 }

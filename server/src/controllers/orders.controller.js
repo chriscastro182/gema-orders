@@ -28,16 +28,21 @@ export const getOrderById = async (req, res) => {
 }
 
 export const ordersBytechnician = async (req, res) => {
+    console.log(req.params);
+    try {
+        const tecnico = await Technician.findById(req.params.technicianId).populate("user")
     
-    const tecnico = await Technician.findById(req.params.technicianId).populate("user")
-
-    const orders = await Order.find({tecnico: req.params.technicianId})
-                                        .populate("tecnico")
-                                        .populate("cliente");
-
-    orders.forEach(o =>  o.tecnico = tecnico );
-
-    await res.json(orders)
+        const orders = await Order.find({tecnico: req.params.technicianId})
+                                            .populate("tecnico")
+                                            .populate("cliente");
+                                            
+        orders.forEach(o =>  o.tecnico = tecnico );
+        console.log(orders);
+        await res.json(orders)
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 

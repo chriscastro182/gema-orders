@@ -16,6 +16,11 @@ router.get('/:technicianId',
     [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.getTechnicianById)
 
+router.get('/getTechnicianByUserId/:technicianId',
+    [authJwt.verifyToken], 
+    technicianController.getTechnicianByUserId)
+    
+
 router.delete('/:technicianId', 
     [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.deleteTechnician)

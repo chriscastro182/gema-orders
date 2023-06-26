@@ -23,6 +23,16 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getUserId(){
+    return localStorage.getItem('userId');
+  }
+
+  getIds(){    
+    const url = this.URL+'/userIdsByToken';
+    console.log(url)
+    return this.http.get<any>(url)
+  }
+
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/pages/login']);

@@ -33,6 +33,13 @@ export const getTechnicianById = async (req, res) => {
     res.json(technician)
 }
 
+export const getTechnicianByUserId = async (req, res) => {
+
+    const technician = await Technician.findOne({user: req.params.technicianId}).populate("user")
+
+    res.json(technician)
+}
+
 export const deleteTechnician = async (req, res) => {
 
     await Technician.findOneAndDelete(req.params.technicianId)

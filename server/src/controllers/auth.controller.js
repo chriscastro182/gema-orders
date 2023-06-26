@@ -2,6 +2,7 @@ import User from '../models/User'
 import jwt from 'jsonwebtoken'
 import config from '../config'
 import Role from '../models/Role'
+import Technician from '../models/Technician'
 
 export const signIn = async (req, res) => {
     //console.log(req.body);
@@ -49,4 +50,32 @@ export const signUp = async (req, res) => {
     })
 
     res.json(token)
+}
+
+export const userIdsByToken = async (req, res) => {
+    try {
+        const token = req.headers["x-access-token"]
+        let idClient, idTecnico;
+        
+        if(!token) return res.status(403).json({message: "No Token provided"})
+        
+        const decoded = jwt.verify(token, config.SECRET)
+        req.userId = decoded.id;
+        console.log('Id: ',decoded.id);
+    
+        const user = await User.findById(req.userId, {password: 0})
+    
+        if(!user) return res.status(404).json({message: "No user found"})
+
+        const tecnico = await Technician.find({user: decoded.id})
+                                        .then(t => idTecnico = t._id)
+                                        .catch(e=> console.log(e))
+
+        console.log(tecnico);
+
+        return res.status(200).json({idUser: user._id, idTecnico})
+
+    } catch (error) {
+        console.log(error);
+    }
 }

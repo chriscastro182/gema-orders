@@ -45,7 +45,9 @@ export class LoginComponent implements OnInit{
             res => {
                 
                 if (res.token) {
+                    console.log(res.userFound)
                     localStorage.setItem('token', res.token);
+                    localStorage.setItem('userId', res.userFound._id);
                     this.router.navigate(['/user/user'])
                     
                 }

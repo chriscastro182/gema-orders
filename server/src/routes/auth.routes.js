@@ -11,5 +11,9 @@ router.post('/signup', [
     verifySignUp.checkDuplicateUser
 ], authCtrl.signUp)
 
+router.get('/userIdsByToken', [
+    authJwt.verifyToken
+], authCtrl.userIdsByToken)
+
 
 export default router
