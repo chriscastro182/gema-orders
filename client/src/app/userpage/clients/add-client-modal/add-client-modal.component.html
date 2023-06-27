@@ -19,14 +19,15 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="lastname">Apellido</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="client.lastname"
-                                placeholder="Apellido del Usuario">
+                            <input type="text" class="form-control" id="lastname" name="lastname"
+                                [(ngModel)]="client.lastname" placeholder="Apellido del Usuario">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="lastname">Teléfono</label>
-                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono" [(ngModel)]="client.phone">
+                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono"
+                                [(ngModel)]="client.phone">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -41,8 +42,12 @@
             <div class="modal-footer">
                 <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple"
                     data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-success btn-fill" (click)="createClient()">Guardar</button>
-                <button type="button" class="btn btn-success btn-fill" (click)="updateClient()">Actualizar</button>
+                <button type="button" class="btn btn-success btn-fill" (click)="createClient()"
+                    *ngIf="!client._id else elseBlock">Guardar</button>
+
+                <ng-template #elseBlock>
+                    <button type="button" class="btn btn-success btn-fill" (click)="updateClient()">Actualizar</button>
+                </ng-template>
             </div>
         </div>
     </div>

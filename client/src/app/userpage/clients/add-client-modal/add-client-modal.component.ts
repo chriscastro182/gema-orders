@@ -13,22 +13,15 @@ export class AddClientModalComponent implements OnInit {
   client: any = {}
   error: Error | null = null;
 
-  @Input() activeModal: boolean;
+  @Input() activeModal:           boolean;
   @Input() activeModalComponent: Function;
-  @Input() cliente:     Client;
+  @Input() cliente:                Client;
 
  
   constructor(private ClientesService: ClientsService) { }
 
-  editFormClient = new FormGroup({
-    name: new FormControl(''),
-    lastname: new FormControl(''),
-    phone: new FormControl(''),
-    email: new FormControl(''),
-  })
-
-
   ngOnInit(): void {
+    console.log(this.cliente)
     if(this.cliente)
     {
       this.getClientById(this.cliente._id);
@@ -57,7 +50,6 @@ export class AddClientModalComponent implements OnInit {
     this.client_id = clientId;
     this.ClientesService.getClientById(clientId).subscribe({
       next: (response: any) => {
-        console.log(response.name);
         this.client = response
       }, error: (e) => {
         console.log(e);

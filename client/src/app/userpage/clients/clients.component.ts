@@ -17,14 +17,14 @@ declare interface DataTable {
 })
 export class ClientsComponent implements OnInit {
 
-  Clients: [Client]
+  Clients:[Client]
   constructor(private clientService: ClientsService) { }
 
-  client_id: string;
   public dataTable: DataTable;  
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
-  Cliente:Client;
+
+  Cliente:Client = new Client();
 
   async ngOnInit() {
     await this.getAllClients();
@@ -82,6 +82,11 @@ export class ClientsComponent implements OnInit {
         ]
       };
     }
+  }
+
+  addClient = () => {
+    this.Cliente = new Client();
+    this.activeModalComponent();
   }
 
   activeModalComponent = () => {
