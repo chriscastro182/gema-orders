@@ -14,4 +14,10 @@ export class TechniciansService {
   {
     return this.http.get<[Technician]>(this.URL)
   }
+  getTechnicianByUserId(){
+
+    const url = this.URL+"/getTechnicianByUserId/" + localStorage.getItem('userId');
+    
+    return this.http.get<Technician>(url)
+  }
 }

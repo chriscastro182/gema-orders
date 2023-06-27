@@ -5,16 +5,21 @@ import * as technicianController from "../controllers/technician.controller"
 import { authJwt, verifySignUp } from '../middlewares'
 
 router.get('/',
-    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
+    [authJwt.verifyToken, authJwt.isLead], 
     technicianController.getTechnicians)
 
 router.post('/',
-    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead],
+    [authJwt.verifyToken, authJwt.isLead],
         technicianController.createTechnician)
 
 router.get('/:technicianId',
     [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
     technicianController.getTechnicianById)
+
+router.get('/getTechnicianByUserId/:technicianId',
+    [authJwt.verifyToken], 
+    technicianController.getTechnicianByUserId)
+    
 
 router.delete('/:technicianId', 
     [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 

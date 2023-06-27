@@ -9,6 +9,8 @@ router.get('/',  authJwt.verifyToken, orderCcontroller.getOrders)
 
 router.get('/:orderId', authJwt.verifyToken, orderCcontroller.getOrderById)
 
+router.get('/ordersBytechnician/:technicianId', authJwt.verifyToken, orderCcontroller.ordersBytechnician)
+
 router.post('/', 
             [authJwt.verifyToken, authJwt.isLead, authJwt.isAdmin],
              orderCcontroller.createOrder)

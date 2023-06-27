@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a7b572e4-e5b9-42bc-bdb1-c438e1f9aa84",
+		"_postman_id": "c7652ae5-e7cb-4903-97ba-459af495da50",
 		"name": "OrdersGEMA",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7205986"
 	},
 	"item": [
 		{
@@ -30,6 +31,27 @@
 				},
 				{
 					"name": "orders/orderId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/orders/646eee58793945dec4cccf79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders",
+								"646eee58793945dec4cccf79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders/orderByTechnnician",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -177,6 +199,58 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "users/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODM2ODYwMGMxMzFjZDU2ZTdmYmExZSIsImlhdCI6MTY4Nzc1NjA3MywiZXhwIjoxNjg3NzYzMjczfQ.DyC_7ar4FfnNuaU5oUL2vROPdKvjHlb2XTB4Y9zVRfc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/ Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODM2ODYwMGMxMzFjZDU2ZTdmYmExZSIsImlhdCI6MTY4Nzc1NjA3MywiZXhwIjoxNjg3NzYzMjczfQ.DyC_7ar4FfnNuaU5oUL2vROPdKvjHlb2XTB4Y9zVRfc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -220,6 +294,84 @@
 								"api",
 								"auth",
 								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Technicians",
+			"item": [
+				{
+					"name": "technicians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "techniciansByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"orders"
 							]
 						}
 					},
