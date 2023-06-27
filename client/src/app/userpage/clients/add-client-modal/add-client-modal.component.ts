@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ClientsService } from 'app/services/clients.service';
 import { Client } from 'app/Models/Client.model';
 import { FormGroup,FormControl } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-client-modal',
@@ -38,6 +39,8 @@ export class AddClientModalComponent implements OnInit {
     this.ClientesService.createClient(this.client)
       .subscribe({
         next: () => {
+          Swal.fire('¡Exito!', 'Usuario Creado Correctamente', 'success')
+
           console.log('inserted')
         }, error: (e) => {
           console.log(e);
