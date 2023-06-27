@@ -16,10 +16,7 @@ export class DeleteClientModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
-    
-    console.log("Cliente ya en el componente hijo ",this.cliente);
-    
+    console.log("Cliente ya en el componente hijo ",this.cliente);    
   }
 
   closeModal(e){

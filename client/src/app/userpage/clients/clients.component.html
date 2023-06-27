@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h4 class="title">Clientes</h4>
-                <button class="btn btn-success pull-right" (click)="activeModalComponent($event)"
+                <button class="btn btn-success pull-right" (click)="activeModalComponent()"
                 data-toggle="modal" data-target="#clientModal">Agregar Cliente</button>
 
                 <p class="category">Este módulo está diseñado para el Líder o Administrador</p>
@@ -44,7 +44,8 @@
                                             <td>{{row[3]}}</td>
                                             <td>{{row[4]}}</td>
                                             <td class="text-right">
-                                                <a class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-simple btn-warning btn-icon edit" (click)="editClient(row[6])"
+                                                data-toggle="modal" data-target="#clientModal"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-simple btn-danger btn-icon remove" (click)="removeClient(row[6])"
                                                 data-toggle="modal" data-target="#deleteClientModal"><i class="fa fa-times"></i></a>
                                             </td>
@@ -67,8 +68,8 @@
 </div>
 
 <app-add-client-modal *ngIf="activeModal"
-[activeModalComponent]='activeModalComponent'>
-
+[activeModalComponent]='activeModalComponent'
+[cliente]='Cliente'>
 </app-add-client-modal>
 
 

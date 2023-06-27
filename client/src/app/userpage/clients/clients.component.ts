@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'app/Models/Client.model'
 import { ClientsService } from 'app/services/clients.service';
+import { FormGroup,FormControl,Validators } from '@angular/forms';
 declare var $:any;
 
 declare interface DataTable {
@@ -19,6 +20,7 @@ export class ClientsComponent implements OnInit {
   Clients: [Client]
   constructor(private clientService: ClientsService) { }
 
+  client_id: string;
   public dataTable: DataTable;  
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
@@ -82,26 +84,24 @@ export class ClientsComponent implements OnInit {
     }
   }
 
-  activeModalComponent = (e) => {
-
+  activeModalComponent = () => {
     this.activeModal = !this.activeModal;
-
   }
 
   activeDeleteModalComponent = () => {
-
     this.activeDeleteModal = !this.activeDeleteModal;
-
-  }
+  } 
 
   removeClient = (id:string) => {
-
     this.Cliente = this.Clients.find(C => C._id === id);
-    
-    //console.log("Me van a borrar, soy Id: ", this.Cliente);
-
     this.activeDeleteModalComponent();
   }
+
+  editClient= (id:string) => {
+    this.Cliente = this.Clients.find(C => C._id === id);
+    this.activeModalComponent();
+  }
+  
   
   ngAfterViewInit() {
     $('#datatables').DataTable({

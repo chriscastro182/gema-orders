@@ -12,27 +12,27 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name"
+                            <input type="text" class="form-control" [(ngModel)]="client.name"
                                 placeholder="Nombre del Usuario">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="lastname">Apellido</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
+                            <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="client.lastname"
                                 placeholder="Apellido del Usuario">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="lastname">Teléfono</label>
-                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono">
+                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono" [(ngModel)]="client.phone">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="lastname">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="client.email"
                                 placeholder="Email">
                         </div>
                     </div>
@@ -41,7 +41,8 @@
             <div class="modal-footer">
                 <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple"
                     data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-success btn-fill">Guardar</button>
+                <button type="button" class="btn btn-success btn-fill" (click)="createClient()">Guardar</button>
+                <button type="button" class="btn btn-success btn-fill" (click)="updateClient()">Actualizar</button>
             </div>
         </div>
     </div>
