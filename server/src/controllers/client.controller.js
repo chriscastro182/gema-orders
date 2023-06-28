@@ -36,9 +36,10 @@ export const getClientById = async (req, res) => {
 
 export const deleteClient = async (req, res) => {
 
-    await Client.findOneAndDelete(req.params.clientId)
+    console.log(req.params.clientId);
+    await Client.findOneAndDelete({"_id": req.params.clientId})
 
-    res.status(204).json()
+    res.status(200).json()
 }
 
 

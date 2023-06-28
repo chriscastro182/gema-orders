@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from 'app/Models/Client.model'
 import { ClientsService } from 'app/services/clients.service';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 declare var $:any;
 
 declare interface DataTable {
@@ -23,8 +24,8 @@ export class ClientsComponent implements OnInit {
   public dataTable: DataTable; 
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
-
   Cliente:Client = new Client();
+  client_id:String
 
   async ngOnInit() {
     await this.getAllClients();
@@ -166,7 +167,35 @@ export class ClientsComponent implements OnInit {
     this.Cliente = this.Clients.find(C => C._id === id);
     this.activeModalComponent();
   }
+
+
+  ansDeleteClient(clientId)
+  {
+    console.log(clientId);
+    Swal.fire({
+      title: '¿Realmente deseas elminar este usuario?',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) { 
+        this.deleteClientById(clientId);
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
   
+
+  deleteClientById(clientId) { 
+    this.clientService.deleteClientbyId(clientId).subscribe({
+      next: (response) => {
+        Swal.fire('¡Éxito!', 'Usuario eliminado correctamente', 'success');
+        this.getAllClientsUpdated();
+      }, error: (e) => {
+        console.log(e);
+      }
+    })
+  }
   
   ngAfterViewInit() {
     $('#datatables').DataTable({

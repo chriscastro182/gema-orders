@@ -57,4 +57,14 @@ export class ClientsService {
       })
     )
   }
+
+  deleteClientbyId(clientId: string)
+  {
+    return this.http.delete(this.URL + '/' + clientId).pipe(
+      catchError((err) => {
+        console.error(err);
+        throw err;
+      })
+    )
+  }
 }
