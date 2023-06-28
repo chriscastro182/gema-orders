@@ -20,7 +20,7 @@ export class ClientsComponent implements OnInit {
   Clients:[Client]
   constructor(private clientService: ClientsService) { }
 
-  public dataTable: DataTable;  
+  public dataTable: DataTable; 
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
 
@@ -41,6 +41,66 @@ export class ClientsComponent implements OnInit {
   }
 
   populateDataRow(clients) {
+    if (clients) {
+      this.Clients = clients;
+      let rows = [];
+ 
+      this.Clients.forEach(user => {
+        const newRow = [
+          user.name.toString(),
+          user.lastname.toString(),
+          user.email.toString(),
+          user.phone.toString(),
+          user.createdAt.toString(),
+          '',
+          user._id
+        ];
+        rows.push(newRow);
+      });
+      this.dataTable = {
+        headerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
+        footerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
+        dataRows: rows
+      };
+
+    } else {
+      this.dataTable = {
+        headerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
+        footerRow: ['Nombre', 'Apellido', 'email', 'Teléfono', 'Fecha', 'Acciones'],
+        dataRows: [
+          ['Airi Satou', 'Andrew Mike', 'Develop', '2013', '99,225', ''],
+          ['Angelica Ramos', 'John Doe', 'Design', '2012', '89,241', 'btn-round'],
+          ['Ashton Cox', 'Alex Mike', 'Design', '2010', '92,144', 'btn-simple'],
+          ['Bradley Greer', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Brenden Wagner', 'Paul Dickens', 'Communication', '2015', '69,201', ''],
+          ['Brielle Williamson', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Caesar Vance', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Cedric Kelly', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Charde Marshall', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Colleen Hurst', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Yuri Berry', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round']
+        ]
+      };
+    }
+  }
+
+  async getAllClientsUpdated(){
+    await this.clientService.getClients().subscribe(
+      res => {
+        console.log(res)
+        this.updateDatatableClients(res)
+      },
+      err => console.log(err)
+    );
+  }
+
+
+  updateDatatableClients(clients)
+  {
+    this.dataTable.dataRows = [];
+    this.dataTable.footerRow = [];
+    this.dataTable.headerRow = [];
+
     if (clients) {
       this.Clients = clients;
       let rows = [];
