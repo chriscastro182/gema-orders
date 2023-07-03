@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="closeModal($event)"><span aria-hidden="true">&times;</span></button>
+                    (click)="closeModal()"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="technicianModalLabel">Agregar Técnico</h4>
             </div>
             <div class="modal-body">
@@ -12,32 +12,37 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="name">Número de Empleado</label>
-                            <input type="text" class="form-control" id="name" name="name"
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="technician.numemployee"
                                 placeholder="Número de Empleado">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="lastname">Teléfono</label>
-                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono">
+                            <label for="phone">Teléfono</label>
+                            <input type="number" class="form-control" id="phone" name="phone" placeholder="Teléfono" [(ngModel)]="technician.phone">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="enterprise">Usuario</label>
-                            <select class="form-control" id="enterprise">
-                                <option value="">Seleccionar Usuario</option>
+                            <select class="form-control" id="enterprise" [(ngModel)]="technician.user">
+                                <option value="" selected>Seleccionar Usuario</option>
                                 <option *ngFor="let user of users; index as i; first as isFirst"
-                                    value="{{ user.id }}">{{ user.name + ' ' + user.lastname }} </option>
+                                    value="{{ user._id }}">{{ user.name + ' ' + user.lastname }} </option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple"
-                    data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-success btn-fill">Guardar</button>
+                <button type="button" (click)="closeModal()" class="btn btn-default btn-simple"
+                    data-dismiss="modal" #closeModalTechnician>Cerrar</button>
+                <button type="button" class="btn btn-success btn-fill" (click)="createTechnician()"
+                *ngIf="!technician._id else elseBlock">Guardar</button>
+
+                <ng-template #elseBlock>
+                    <button type="button" class="btn btn-success btn-fill" (click)="updateTechnician()">Actualizar</button>
+                </ng-template>
             </div>
         </div>
     </div>

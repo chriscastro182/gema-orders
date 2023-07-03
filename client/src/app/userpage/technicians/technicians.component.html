@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h4 class="title">Técnicos</h4>
-                <button class="btn btn-success pull-right" (click)="activeModalComponent($event)"
+                <button class="btn btn-success pull-right" (click)="addTechnician()"
                 data-toggle="modal" data-target="#technicianModal">Agregar Técnico</button>
                 <p class="category">Este módulo está diseñado para el Líder o Administrador</p>
 
@@ -45,8 +45,9 @@
                                             <td>{{row[3]}}</td>
                                             <td>{{row[4]}}</td>
                                             <td class="text-right">
-                                                <a class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                                                <a class="btn btn-simple btn-danger btn-icon remove" (click)="removeTechnician(row[5])"
+                                                <a class="btn btn-simple btn-warning btn-icon edit" (click)="editTechnician(row[5])"
+                                                data-toggle="modal" data-target="#technicianModal"><i class="fa fa-edit" ></i></a>
+                                                <a class="btn btn-simple btn-danger btn-icon remove" (click)="ansDeleteClient(row[5])"
                                                 data-toggle="modal" data-target="#deleteTechnicianModal"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
@@ -69,7 +70,9 @@
 
 
 <app-add-technicians-modal *ngIf="activeModal"
-[activeModalComponent]='activeModalComponent'>
+[activeModalComponent]='activeModalComponent'
+[technicianParent]='Technician'
+(getAllTechnicians) = "getAllTechniciansUpdated()">
 </app-add-technicians-modal>
 
 
