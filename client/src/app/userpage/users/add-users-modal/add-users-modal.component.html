@@ -12,23 +12,23 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name"
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.name"
                                 placeholder="Nombre del Usuario">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="lastname">Apellido</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
+                            <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname"
                                 placeholder="Apellido del Usuario">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="enterprise">Empresa</label>
-                            <select class="form-control" id="enterprise">
+                            <select class="form-control" id="enterprise" [(ngModel)]="user.empresa">
                                 <option value="">Seleccionar Empresa</option>
-                                <option *ngFor="let company of companies; index as i; first as isFirst" value="{{ company.id }}" >{{ company.name }} </option>
+                                <option *ngFor="let company of companies; index as i; first as isFirst" value="{{ company._id }}" >{{ company.name }} </option>
                             </select>
                         </div>
                     </div>
@@ -37,14 +37,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="lastname">Password</label>
-                            <input type="password" class="form-control" id="pass" name="pass"
+                            <input type="password" class="form-control" id="pass" name="pass" [(ngModel)]="user.password"
                                 placeholder="Password">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="lastname">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email"
                                 placeholder="Email">
                         </div>
                     </div>
@@ -53,8 +53,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" (click)="closeModal($event)" class="btn btn-default btn-simple"
-                    data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-success btn-fill">Guardar</button>
+                    data-dismiss="modal" #closeModalUser>Cerrar</button>
+                <button type="button" class="btn btn-success btn-fill" (click)="createUser()"
+                *ngIf="!user._id else elseBlock">Guardar</button>
+
+                <ng-template #elseBlock>
+                    <button type="button" class="btn btn-success btn-fill" (click)="updateUser()">Actualizar</button>
+                </ng-template>
             </div>
         </div>
     </div>

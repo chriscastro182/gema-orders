@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <h4 class="title">Usuarios</h4>
                 
-                <button class="btn btn-success pull-right" (click)="activeModalComponent($event)"
+                <button class="btn btn-success pull-right" (click)="addUser()"
                 data-toggle="modal" data-target="#userModal">Agregar Usuario</button>
 
                 <p class="category">Este módulo está diseñado para el Líder o Administrador</p>
@@ -47,9 +47,10 @@
                                             <td>{{row[3]}}</td>
                                             <td>{{row[4]}}</td>
                                             <td class="text-right">
-                                                <a class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-simple btn-warning btn-icon edit" (click)="editUser(row[6])"
+                                                data-toggle="modal" data-target="#userModal"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-simple btn-danger btn-icon remove"
-                                                (click)="removeUser(row[6])" data-toggle="modal" data-target="#deleteUserModal"><i class="fa fa-times"></i></a>
+                                                (click)="ansDeleteUser(row[6])" data-toggle="modal" data-target="#deleteUserModal"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -71,7 +72,8 @@
 
 
 <app-add-users-modal *ngIf="activeModal"
-[activeModalComponent]='activeModalComponent'>
+[activeModalComponent]='activeModalComponent'
+[userParent]='User'>
 </app-add-users-modal>
 
 

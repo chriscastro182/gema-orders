@@ -25,7 +25,7 @@ export const createUser = async (req, res) => {
     }
 
     if (empresa) {
-        const enterprise = await Enterprise.findOne({ name: empresa })
+        const enterprise = await Enterprise.findOne({ _id: empresa })
         newUser.empresa = [enterprise._id]
     } else {
         const enterprise = await Enterprise.findOne({ name: "GEMA" })

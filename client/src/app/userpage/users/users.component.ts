@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'app/Models/User.model';
 import { UsersService } from 'app/services/users.service';
+import Swal from 'sweetalert2';
 declare var $:any;
 
 declare interface DataTable {
@@ -22,7 +23,7 @@ export class UsersComponent implements OnInit {
   public dataTable: DataTable;
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
-  User:User;
+  User:User = new User();
 
   async ngOnInit(){
       
@@ -81,7 +82,13 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  activeModalComponent = (e) => {
+  addUser = () =>
+  {
+    this.User = new User()
+    this.activeModalComponent()
+  }
+
+  activeModalComponent = () => {
     this.activeModal = !this.activeModal;
   }
 
@@ -95,6 +102,39 @@ export class UsersComponent implements OnInit {
     this.User = this.Users.find(C => C._id === id);
     this.activeDeleteModalComponent();
   }
+
+  editUser = (id:string) => {
+    console.log(id);
+    this.User = this.Users.find(C => C._id === id);
+    this.activeModalComponent();
+  }
+
+  ansDeleteUser(userId)
+  {
+    Swal.fire({
+      title: '¿Realmente deseas elminar este usuario?',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) { 
+        this.deleteUserById(userId);
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
+
+  deleteUserById(userId) { 
+    this.userService.deleteTechnicianById(userId).subscribe({
+      next: (response) => {
+        Swal.fire('¡Éxito!', 'Técnico eliminado correctamente', 'success');
+        //this.getAllTechniciansUpdated();
+      }, error: (e) => {
+        console.log(e);
+      }
+    })
+  }
+
   ngAfterViewInit(){
 
       $('#datatables').DataTable({
