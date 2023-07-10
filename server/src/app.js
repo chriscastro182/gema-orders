@@ -13,6 +13,7 @@ import clientRoutes from './routes/client.routes'
 import familyRoutes from './routes/family.routes'
 import applianceRoutes from './routes/appliance.routes'
 import enterpriseRoutes from './routes/enterprise.routes'
+import catalogsRoutes from './routes/catalogs.routes'
 
 const app = express()
 //const cors = requre('cors')
@@ -41,6 +42,7 @@ app.use('/api/clients',clientRoutes)
 app.use('/api/families',familyRoutes)
 app.use('/api/appliances',applianceRoutes)
 app.use('/api/enterprises',enterpriseRoutes)
+app.use('/api/catalogs',catalogsRoutes)
 
  
 

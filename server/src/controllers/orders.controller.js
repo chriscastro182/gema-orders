@@ -1,5 +1,6 @@
 import Order from "../models/Order"
 import Technician from "../models/Technician"
+import Client from "../models/Client"
 import User from "../models/User"
 
 export const createOrder = async (req, res) => {
@@ -62,3 +63,5 @@ export const deleteOrder = async (req, res) => {
 
     res.status(204).json()
 }
+
+

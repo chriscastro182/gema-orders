@@ -9,16 +9,27 @@
                     <div class="content">
                         <form>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
+                                <div class="col-md-2">
+                                    <div class="form-group" *ngIf="Tecnicos">
                                         <label>Técnico</label>
-                                        <select name="technicianOrder" id="technicianOrder" class="form-control">
-                                            <option value="1">Efraín Vargas</option>
-                                            <option value="2">Valeria Camargo</option>
+                                        <select [(ngModel)]="Orden.tecnico" class="form-control">
+                                            <option *ngIf="!Tecnicos" value="0" selected>No existen tecnicos registrados</option>
+                                            <option  value="" selected>Selecciona Técnico</option>
+                                            <option *ngFor="let tecnico of Tecnicos" [value]="tecnico._id">{{ tecnico.user.name }}</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
+                                    <div class="form-group" *ngIf="Clientes">
+                                        <label>Cliente</label>
+                                        <select [(ngModel)]="Orden.cliente" class="form-control">
+                                            <option *ngIf="!Clientes" value="0" selected>No existen clientes registrados</option>
+                                            <option  value="" selected>Selecciona Cliente</option>
+                                            <option *ngFor="let cliente of Clientes" [value]="cliente._id">{{ cliente.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Equipo</label>
                                         <select name="technicianOrder" id="technicianOrder" class="form-control">
@@ -26,13 +37,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Antes de Empezar</label>
                                         <input type="datetime-local" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Antes Completa</label>
                                         <input type="datetime-local" class="form-control">

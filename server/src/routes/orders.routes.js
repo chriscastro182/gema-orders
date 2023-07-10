@@ -1,26 +1,28 @@
 import { Router } from "express"
 const router = Router()
 
-import * as orderCcontroller from '../controllers/orders.controller'
+import * as orderController from '../controllers/orders.controller'
 
 import { authJwt } from "../middlewares"
 
-router.get('/',  authJwt.verifyToken, orderCcontroller.getOrders)
+router.get('/',  authJwt.verifyToken, orderController.getOrders)
 
-router.get('/:orderId', authJwt.verifyToken, orderCcontroller.getOrderById)
+router.get('/:orderId', authJwt.verifyToken, orderController.getOrderById)
 
-router.get('/ordersBytechnician/:technicianId', authJwt.verifyToken, orderCcontroller.ordersBytechnician)
+router.get('/ordersBytechnician/:technicianId', authJwt.verifyToken, orderController.ordersBytechnician)
 
 router.post('/', 
             [authJwt.verifyToken, authJwt.isLead, authJwt.isAdmin],
-             orderCcontroller.createOrder)
+             orderController.createOrder)
 
 router.put('/:orderId', 
             [authJwt.verifyToken, authJwt.isAdmin], 
-            orderCcontroller.updateOrderById)
+            orderController.updateOrderById)
 
 router.delete('/:orderId', 
             [authJwt.verifyToken, authJwt.isLead, authJwt.isAdmin], 
-            orderCcontroller.deleteOrder)
+            orderController.deleteOrder)
+
+
 
 export default router

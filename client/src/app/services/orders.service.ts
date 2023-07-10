@@ -17,4 +17,5 @@ export class OrdersService {
     return this.http.get<[Order]>(this.URL+"/ordersBytechnician/"+id);
 
   }
+
 }

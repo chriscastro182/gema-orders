@@ -3,6 +3,7 @@ import { OrdersService } from 'app/services/orders.service';
 import { Order } from 'app/Models/Order.model';
 import { TechniciansService } from 'app/services/technicians.service';
 import { Technician } from 'app/Models/Technician.model';
+import { Client } from 'app/Models/Client.model';
 
 declare interface DataTable {
   headerRow: string[];
@@ -28,6 +29,8 @@ export class OrdersComponent implements OnInit {
     await  this.technicianService.getTechnicianByUserId().subscribe(
       res => {
         this.Technician = res;
+        console.log(this.Technician);
+        
         this.getOrders(this.Technician._id as string)
       },
       err => console.log(err)
@@ -51,16 +54,18 @@ export class OrdersComponent implements OnInit {
         let rows = [];
 
         this.Orders.forEach(order => {
-            //console.log(order)
+            console.log(order)
+            const Cliente = order.cliente as Client ;
+            const Tecnico = order.tecnico as Technician;
             const newRow = [
-                            order.cliente.name.toString()+order.cliente.lastname.toString(),
-                            order.cliente.email.toString(), 
-                            order.tecnico.user.name.toString() + order.tecnico.user.name.toString(), 
-                            order.descripcion.toString(), 
-                            order.createdAt.toString(),
-                            '',
-                            order._id
-                            ];
+              Cliente.name.toString()+Cliente.lastname.toString(),
+              Cliente.email.toString(), 
+              Tecnico.user.name.toString(), 
+              order.descripcion.toString(), 
+              order.createdAt.toString(),
+              '',
+              order._id
+            ];
             rows.push(newRow);
         });
         this.dataTable = {

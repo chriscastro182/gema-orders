@@ -4,6 +4,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { RouterModule } from '@angular/router';
 import { OrderRoutes } from './orders.routing';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,7 @@ import { OrderRoutes } from './orders.routing';
   ],
   imports: [
     CommonModule,    
+    FormsModule,
     RouterModule.forChild(OrderRoutes),
   ]
 })
