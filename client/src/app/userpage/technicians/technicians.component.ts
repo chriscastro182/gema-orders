@@ -46,7 +46,7 @@ export class TechniciansComponent implements OnInit {
         const newRow = [
           user.numemployee.toString(),
           user.phone.toString(),
-          user.user.toString(),
+          user.user.name.toString(),
           user.createdAt.toString(),
           '',
           user._id

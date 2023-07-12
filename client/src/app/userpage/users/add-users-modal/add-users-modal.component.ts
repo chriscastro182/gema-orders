@@ -14,6 +14,7 @@ import { User } from 'app/Models/User.model';
 })
 export class AddUsersModalComponent implements OnInit {
   
+  @Output() getAllUsersUpdated = new EventEmitter()
   user:any = {}
   error: Error | null = null
 
@@ -47,6 +48,11 @@ export class AddUsersModalComponent implements OnInit {
      }
   }
 
+  getUsersPopulate()
+  {
+    this.getAllUsersUpdated.emit()
+  }
+
   closeModal = (e) =>{
     this.activeModalComponent();
   }
@@ -59,7 +65,7 @@ export class AddUsersModalComponent implements OnInit {
         next: () => {
           Swal.fire('¡Éxito!', 'Usuario Creado Correctamente', 'success');
           this.closeModalUser.nativeElement.click();
-          //this.getTechniciansPopulate();
+          this.getUsersPopulate();
         }, error: (e) => {
           console.log(e);
         },
@@ -83,7 +89,7 @@ export class AddUsersModalComponent implements OnInit {
         next: () => {
           Swal.fire('¡Éxito!', 'Usuario Actualizado Correctamente', 'success');
           this.closeModalUser.nativeElement.click();
-          //this.getTechniciansPopulate();        
+          this.getUsersPopulate();        
         }, error: (e) => {
           console.log(e);
         },

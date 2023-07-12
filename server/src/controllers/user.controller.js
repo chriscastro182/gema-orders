@@ -54,7 +54,7 @@ export const getUserById = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
 
-    await User.findOneAndDelete(req.params.userId)
+    await User.findOneAndDelete({"_id": req.params.userId})
 
     res.status(204).json()
 }

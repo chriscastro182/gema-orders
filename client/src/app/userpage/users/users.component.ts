@@ -82,6 +82,67 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  async getAllUsersUpdated(){
+    await this.userService.getUsers().subscribe(
+      res => {
+        this.updateDatatableUsers(res)
+      },
+      err => console.log(err)
+    );
+  }
+
+  updateDatatableUsers(users){
+
+    this.dataTable.dataRows = [];
+    this.dataTable.footerRow = [];
+    this.dataTable.headerRow = [];
+
+    console.log(users)
+    if (users) {
+        this.Users = users;
+        let rows = [];
+
+        this.Users.forEach(user => {
+            console.log(user)
+            const newRow = [
+                            user.name.toString(),
+                            user.lastname.toString(), 
+                            user.email.toString(), 
+                            user.empresa.name.toString(), 
+                            user.createdAt.toString(),
+                            '',
+                            user._id
+                            ];
+            rows.push(newRow);
+        });
+        this.dataTable = {
+            headerRow: [ 'Nombre', 'Apellido', 'email', 'Empresa', 'Fecha', 'Actions' ],
+            footerRow: [ 'Nombre', 'Apellido', 'email', 'Empresa', 'Fecha', 'Actions' ],
+            dataRows: rows
+         };
+
+    } else {
+        this.dataTable = {
+            headerRow: [ 'Nombre', 'Apellido', 'email', 'Empresa', 'Fecha', 'Actions' ],
+            footerRow: [ 'Nombre', 'Apellido', 'email', 'Empresa', 'Fecha', 'Actions' ],
+            dataRows: [
+                ['Airi Satou', 'Andrew Mike', 'Develop', '2013', '99,225',''],
+                ['Angelica Ramos', 'John Doe', 'Design', '2012', '89,241', 'btn-round'],
+                ['Ashton Cox', 'Alex Mike', 'Design', '2010', '92,144', 'btn-simple'],
+                ['Bradley Greer','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+                ['Brenden Wagner', 'Paul Dickens', 'Communication', '2015', '69,201', ''],
+                ['Brielle Williamson','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+                ['Caesar Vance','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+                ['Cedric Kelly','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+                ['Charde Marshall','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+                ['Colleen Hurst','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+                ['Yuri Berry','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round']
+            ]
+         };
+    }
+  }
+
+
   addUser = () =>
   {
     this.User = new User()
@@ -128,7 +189,7 @@ export class UsersComponent implements OnInit {
     this.userService.deleteTechnicianById(userId).subscribe({
       next: (response) => {
         Swal.fire('¡Éxito!', 'Técnico eliminado correctamente', 'success');
-        //this.getAllTechniciansUpdated();
+        this.getAllUsersUpdated();
       }, error: (e) => {
         console.log(e);
       }

@@ -42,7 +42,7 @@ export const getTechnicianByUserId = async (req, res) => {
 
 export const deleteTechnician = async (req, res) => {
 
-    await Technician.findOneAndDelete(req.params.technicianId)
+    await Technician.findOneAndDelete({"_id": req.params.technicianId})
 
     res.status(204).json()
 }
