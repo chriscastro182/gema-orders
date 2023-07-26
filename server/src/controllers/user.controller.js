@@ -47,7 +47,8 @@ export const getUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
 
-    const user = await User.findById(req.params.userId)
+    const user = await User.findById(req.params.userId, {password: 0}).populate("roles").populate("empresa")
+
 
     res.json(user)
 }

@@ -26,10 +26,13 @@ export class AuthService {
   getUserId(){
     return localStorage.getItem('userId');
   }
+  getUserName(){
+    return localStorage.getItem('username').toLocaleUpperCase();
+  }
 
   getIds(){    
     const url = this.URL+'/userIdsByToken';
-    console.log(url)
+    //console.log(url)
     return this.http.get<any>(url)
   }
 

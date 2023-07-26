@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
+import { AuthService } from 'app/services/auth.service';
 
 declare var $:any;
 //Metadata
@@ -19,12 +20,12 @@ export interface ChildrenItems {
 }
 
 //Menu Items
-export const ROUTES: RouteInfo[] = [{
+export const ROUTES: RouteInfo[] = [/* {
         path: '/dashboard',
         title: 'Dashboard',
         type: 'link',
         icontype: 'pe-7s-graph'
-    },{
+    } ,*/{
         path: '/orders',
         title: 'Órdenes',
         type: 'sub',
@@ -87,6 +88,10 @@ export const ROUTES: RouteInfo[] = [{
 
 export class SidebarComponent {
     public menuItems: any[];
+
+    
+    constructor( public authService: AuthService) {}
+
     isNotMobileMenu(){
         if($(window).width() > 991){
             return false;
@@ -97,6 +102,7 @@ export class SidebarComponent {
     ngOnInit() {
         var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+
 
         isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
