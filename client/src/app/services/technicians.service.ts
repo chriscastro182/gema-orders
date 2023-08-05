@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Technician } from 'app/Models/Technician.model';
 import { Observable } from 'rxjs'
 import { catchError } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class TechniciansService {
 
-  private URL = 'http://localhost:3000/api/technicians'
+  private serverURL = environment.API_URL;
+  private URL = `http://${this.serverURL}:3000/api/technicians`;
   constructor(private http: HttpClient) { }
 
   getTechnicians()

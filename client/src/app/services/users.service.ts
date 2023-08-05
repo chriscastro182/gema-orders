@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'app/Models/User.model';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -10,9 +11,9 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsersService {
-
-
-  private URL = 'http://localhost:3000/api/users'
+  
+  private serverURL = environment.API_URL;
+  private URL = `http://${this.serverURL}:3000/api/users`;
 
   constructor(private http: HttpClient) { }
 

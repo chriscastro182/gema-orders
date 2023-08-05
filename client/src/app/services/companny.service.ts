@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Companny } from 'app/Models/Companny.model';
+import { environment } from 'environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CompaniesService {
 
-    private URL = 'http://localhost:3000/api/enterprises/'
+    private serverURL = environment.API_URL;
+    private URL = `http://${this.serverURL}:3000/api/enterprises`;
 
     constructor(private http: HttpClient) { }
 
