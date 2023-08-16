@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Companny } from 'app/Models/Companny.model';
 import { CompaniesService } from 'app/services/companny.service';
 import Swal from 'sweetalert2';
@@ -20,12 +20,14 @@ export class AddUsersModalComponent implements OnInit {
 
   @Input() activeModal:           boolean;  
   @Input() activeModalComponent:  Function;
-  @Input() userParent:   User;
+  @Input() userParent:            User;
+  @Input() isEditModal:           boolean;
   @ViewChild('closeModalUser') closeModalUser: ElementRef;
 
 
   company:Companny;
   companies:[Companny];
+  idEmpresa: any;
 
   constructor(
     private companyService: CompaniesService,
@@ -41,8 +43,9 @@ export class AddUsersModalComponent implements OnInit {
       },
       err => console.log(err)
      );
-
-     if(this.userParent)
+      console.log("Bool de edit "+this.isEditModal);
+      
+     if(this.isEditModal)
      {
         this.getUserById(this.userParent._id);
      }
@@ -54,12 +57,12 @@ export class AddUsersModalComponent implements OnInit {
   }
 
   closeModal = (e) =>{
+    this.isEditModal = false;
     this.activeModalComponent();
   }
 
   createUser() {
     console.log('clicked')
-    this.user.roles = ['6473a5efaf80c24578e13136']
     this.userService.createUser(this.user)
       .subscribe({
         next: () => {
@@ -77,6 +80,9 @@ export class AddUsersModalComponent implements OnInit {
     this.userService.getUserById(userId).subscribe({
       next: (response: any) => {
         this.user = response
+        this.idEmpresa = response.empresa._id
+        console.log(this.idEmpresa);
+        
       }, error: (e) => {
         console.log(e);
       }
@@ -84,6 +90,7 @@ export class AddUsersModalComponent implements OnInit {
   }
 
   updateUser() {
+    this.user.empresa = this.idEmpresa;
     this.userService.updateUserById(this.user)
       .subscribe({
         next: () => {
@@ -97,5 +104,9 @@ export class AddUsersModalComponent implements OnInit {
       })
   }
 
+  OnDestroy(){
+    
+    this.isEditModal = false;
+  }
 
 }

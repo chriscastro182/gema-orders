@@ -25,7 +25,8 @@ export class ClientsComponent implements OnInit {
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
   Cliente:Client = new Client();
-  client_id:String
+  client_id:String;
+  isEditModalBool:Boolean = false;
 
   async ngOnInit() {
     await this.getAllClients();

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'app/Models/User.model';
+import { AuthService } from 'app/services/auth.service';
 import { UsersService } from 'app/services/users.service';
 import Swal from 'sweetalert2';
 declare var $:any;
@@ -18,11 +19,12 @@ export class UsersComponent implements OnInit {
 
   Users:[User]
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private authService: AuthService) { }
 
   public dataTable: DataTable;
   activeModal:Boolean = false;
-  activeDeleteModal:Boolean = false;
+  activeDeleteModal:Boolean = false;  
+  isEditModalBool:boolean = false;
   User:User = new User();
 
   async ngOnInit(){
@@ -32,12 +34,15 @@ export class UsersComponent implements OnInit {
             //console.log(res)
             this.populateDataRow(res)
         },
-        err => console.log(err)
+        err => {
+          console.log(err.status)
+          this.authService.getSessionBehavior(err.status)
+        }
        );
   }
 
   populateDataRow(users){
-    console.log(users)
+    //console.log(users)
     if (users) {
         this.Users = users;
         let rows = [];
@@ -87,7 +92,10 @@ export class UsersComponent implements OnInit {
       res => {
         this.updateDatatableUsers(res)
       },
-      err => console.log(err)
+      err => {
+        console.log(err.status)
+        this.authService.getSessionBehavior(err.status)
+      }
     );
   }
 
@@ -127,15 +135,6 @@ export class UsersComponent implements OnInit {
             footerRow: [ 'Nombre', 'Apellido', 'email', 'Empresa', 'Fecha', 'Actions' ],
             dataRows: [
                 ['Airi Satou', 'Andrew Mike', 'Develop', '2013', '99,225',''],
-                ['Angelica Ramos', 'John Doe', 'Design', '2012', '89,241', 'btn-round'],
-                ['Ashton Cox', 'Alex Mike', 'Design', '2010', '92,144', 'btn-simple'],
-                ['Bradley Greer','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-                ['Brenden Wagner', 'Paul Dickens', 'Communication', '2015', '69,201', ''],
-                ['Brielle Williamson','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-                ['Caesar Vance','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-                ['Cedric Kelly','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-                ['Charde Marshall','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-                ['Colleen Hurst','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
                 ['Yuri Berry','Mike Monday', 'Marketing', '2013', '49,990', 'btn-round']
             ]
          };
@@ -145,6 +144,7 @@ export class UsersComponent implements OnInit {
 
   addUser = () =>
   {
+    this.isEditModalBool = false;
     this.User = new User()
     this.activeModalComponent()
   }
@@ -165,7 +165,8 @@ export class UsersComponent implements OnInit {
   }
 
   editUser = (id:string) => {
-    console.log(id);
+    //console.log(id);
+    this.isEditModalBool = true
     this.User = this.Users.find(C => C._id === id);
     this.activeModalComponent();
   }

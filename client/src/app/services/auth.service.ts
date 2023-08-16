@@ -42,4 +42,9 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/pages/login']);
   }
+  getSessionBehavior(err: number){
+    if (err === 401) {
+      this.logout()
+    }
+  }
 }

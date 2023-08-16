@@ -23,6 +23,7 @@ export class AddTechniciansModalComponent implements OnInit {
   @Input() activeModal:           boolean;
   @Input() activeModalComponent: Function;
   @Input() technicianParent:   Technician;
+  @Input() isEditModal:           boolean;
   @ViewChild('closeModalTechnician') closeModalTechnician: ElementRef;
 
   company: Companny;
@@ -36,18 +37,16 @@ export class AddTechniciansModalComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    console.log(this.technicianParent)
-    if(this.technicianParent)
-    {
-      await this.userService.getUsers().subscribe(
-        res => {
-          this.users = res;
-        },
-        err => console.log(err)
-      );
+    
+    await this.userService.getUsers().subscribe(
+      res => {
+        this.users = res;
+      },
+      err => console.log(err)
+    );
 
-      this.getTechnicianById(this.technicianParent._id)
-    }
+    this.isEditModal ? this.getTechnicianById(this.technicianParent._id) : null;
+
   }
 
   getTechniciansPopulate() {
@@ -75,6 +74,8 @@ export class AddTechniciansModalComponent implements OnInit {
 
   getTechnicianById(technicianId) { 
     this.technicianId = technicianId;
+    console.log("technician ID: "+ technicianId);
+    
     this.technicianService.getTechnicianById(technicianId).subscribe({
       next: (response: any) => {
         this.technician = response

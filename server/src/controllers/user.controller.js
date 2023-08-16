@@ -5,7 +5,7 @@ import Enterprise from "../models/Enterprise"
 export const createUser = async (req, res) => {
 
     const { name, lastname, password, email, empresa, roles } = req.body
-
+    console.log(req.body);
     const newUser = new User(
         {
             name,
@@ -29,6 +29,7 @@ export const createUser = async (req, res) => {
         newUser.empresa = [enterprise._id]
     } else {
         const enterprise = await Enterprise.findOne({ name: "GEMA" })
+        console.log(enterprise);
         newUser.empresa = [enterprise._id]
     }
 
@@ -49,7 +50,7 @@ export const getUserById = async (req, res) => {
 
     const user = await User.findById(req.params.userId, {password: 0}).populate("roles").populate("empresa")
 
-
+    console.log(user);
     res.json(user)
 }
 
@@ -62,6 +63,8 @@ export const deleteUser = async (req, res) => {
 
 
 export const updateUserById = async (req, res) => {
+    req.body.password =  await User.encryptPass(req.body.password)
+    
     const updatedUser = await User.findByIdAndUpdate(req.params.userId,
         req.body,
         {

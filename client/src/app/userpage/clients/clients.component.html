@@ -68,6 +68,7 @@
 <app-add-client-modal *ngIf="activeModal"
 [activeModalComponent]='activeModalComponent'
 [cliente]='Cliente'
+[isEditModal]='isEditModalBool'
 (testEvent) = "getAllClientsUpdated()">
 </app-add-client-modal>
 

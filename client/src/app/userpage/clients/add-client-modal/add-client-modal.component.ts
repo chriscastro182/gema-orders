@@ -22,14 +22,14 @@ export class AddClientModalComponent implements OnInit {
   @Input() cliente:                Client;
   @Input() populateDataRow:      Function;
   @Input() getAllClients:        Function;
+  @Input() isEditModal:           boolean;
   @ViewChild('closeModalClient') closeModalClient: ElementRef;
 
  
   constructor(private clientService: ClientsService) { }
 
   ngOnInit(): void {
-    console.log(this.cliente) 
-    if(this.cliente)
+    if(this.isEditModal)
     {
       this.getClientById(this.cliente._id);
     }

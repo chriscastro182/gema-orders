@@ -2,7 +2,7 @@ import User from "../models/User"
 import Technician from "../models/Technician"
 
 export const createTechnician = async (req, res) => {
-
+    console.log("Entró al método creare");
     const { numemployee, phone, user } = req.body
 
     const newTecnician = new Technician(
@@ -20,9 +20,15 @@ export const createTechnician = async (req, res) => {
 
 export const getTechnicians = async (req, res) => {
 
-    const technicians = await Technician.find().populate("user")
+    try {
+        const technicians = await Technician.find().populate("user")
+        res.status(200).json(technicians)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({err: true, message: error})
+    }
 
-    res.status(200).json(technicians)
 }
 
 

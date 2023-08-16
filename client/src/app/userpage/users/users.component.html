@@ -74,6 +74,7 @@
 <app-add-users-modal *ngIf="activeModal"
 [activeModalComponent]='activeModalComponent'
 [userParent]='User'
+[isEditModal]='isEditModalBool'
 (getAllUsersUpdated) = "getAllUsersUpdated()">
 </app-add-users-modal>
 

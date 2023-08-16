@@ -25,6 +25,7 @@ export class TechniciansComponent implements OnInit {
   activeModal:Boolean = false;
   activeDeleteModal:Boolean = false;
   Technician:Technician = new Technician();
+  isEditModalBool:boolean = false;
 
   async ngOnInit(){
     await this.technicianService.getTechnicians().subscribe(
@@ -153,6 +154,7 @@ export class TechniciansComponent implements OnInit {
   }
 
   removeTechnician = (id:string) => {
+    this.isEditModalBool = true;
     this.Technician = this.Technicians.find(C => C._id === id);
     this.activeDeleteModalComponent();
   }
