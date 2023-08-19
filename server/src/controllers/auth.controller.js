@@ -90,10 +90,11 @@ export const isAdminByToken = async (req, res) => {
         req.userId = decoded.id;
         
         const user = await User.findById(req.userId, {password: 0}).populate("roles")
+        console.log('User: ',user);
         
         if (user.roles) {
             const isAdmin = user.roles.some(r => r.rol == 'admin')
-            console.log('Roles: ',user.roles);
+            console.log('Es admin?: ',isAdmin);
 
             return res.status(200).json(isAdmin)            
         } else {

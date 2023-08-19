@@ -10,19 +10,26 @@ export class AdminGuard implements CanActivate {
   
   constructor(private authService: AuthService, private router: Router){}
 
-  canActivate(): boolean {
+  canActivate(): any {
     let isAdmin = false;
 
     this.authService.isAdminByToken().subscribe(
       res => {
+        console.log(res)
         isAdmin = res
+        return isAdmin;
       },
       err => {
         console.log(err.status)
         this.authService.getSessionBehavior(err.status)
+        return isAdmin;
       }
     )
-    return isAdmin;
+    //console.log(isAdmin);
+    setTimeout(() => {
+      return false
+    }, 1000);
+
   }
   
 }
