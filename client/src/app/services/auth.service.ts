@@ -46,5 +46,14 @@ export class AuthService {
     if (err === 401) {
       this.logout()
     }
+    if (err==500){
+      this.router.navigate(['/']);
+    }
+  }
+
+  isAdminByToken(){    
+    const url = this.URL+'/isAdminByToken';
+    //console.log(url)    
+    return this.http.get<any>(url)
   }
 }

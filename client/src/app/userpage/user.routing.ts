@@ -5,6 +5,7 @@ import { AuthGuard } from 'app/auth.guard';
 import { UsersComponent } from './users/users.component';
 import { ClientsComponent } from './clients/clients.component';
 import { TechniciansComponent } from './technicians/technicians.component';
+import { AdminGuard } from 'app/admin.guard';
 
 
 export const UserRoutes: Routes = [{
@@ -16,14 +17,14 @@ export const UserRoutes: Routes = [{
     },{
         path: 'user/users',
         component: UsersComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, AdminGuard]
     },{
         path: 'user/clients',
         component: ClientsComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, AdminGuard]
     },{
         path: 'user/technicans',
         component: TechniciansComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, AdminGuard]
     }]
 }];

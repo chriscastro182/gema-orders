@@ -20,7 +20,7 @@ export class UserComponent implements OnInit{
         
         await this.userService.getUserById(userId).subscribe(
             res => {
-                console.log(res)
+                //console.log(res)
                 this.user = res as User;
             },
             err => console.error(err)

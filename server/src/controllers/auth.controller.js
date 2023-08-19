@@ -79,3 +79,29 @@ export const userIdsByToken = async (req, res) => {
         console.log(error);
     }
 }
+
+export const isAdminByToken = async (req, res) => {
+    try {
+        const token = req.headers["x-access-token"]
+
+        if(!token) return res.status(403).json({message: "No Token provided"})
+        
+        const decoded = jwt.verify(token, config.SECRET)
+        req.userId = decoded.id;
+        
+        const user = await User.findById(req.userId, {password: 0}).populate("roles")
+        
+        if (user.roles) {
+            const isAdmin = user.roles.some(r => r.rol == 'admin')
+            console.log('Roles: ',user.roles);
+
+            return res.status(200).json(isAdmin)            
+        } else {
+
+            return res.status(200).json(false)
+            
+        }
+    } catch (error) {
+        return res.status(500).json({message: error})
+    }
+}

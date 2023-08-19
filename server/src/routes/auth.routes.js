@@ -15,5 +15,8 @@ router.get('/userIdsByToken', [
     authJwt.verifyToken
 ], authCtrl.userIdsByToken)
 
+router.get('/isAdminByToken', [
+    authJwt.verifyToken
+], authCtrl.isAdminByToken)
 
 export default router
