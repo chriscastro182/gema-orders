@@ -12,9 +12,7 @@ router.post('/',
     [authJwt.verifyToken, verifySignUp.checkDuplicateUser,authJwt.isAdmin, authJwt.isLead],
     userController.createUser)
 
-router.get('/:userId',
-    [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 
-    userController.getUserById)
+router.get('/:userId', authJwt.verifyToken, userController.getUserById)
 
 router.delete('/:userId', 
     [authJwt.verifyToken,authJwt.isAdmin, authJwt.isLead], 

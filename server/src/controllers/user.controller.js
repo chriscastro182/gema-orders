@@ -5,7 +5,6 @@ import Enterprise from "../models/Enterprise"
 export const createUser = async (req, res) => {
 
     const { name, lastname, password, email, empresa, roles } = req.body
-    console.log(req.body);
     const newUser = new User(
         {
             name,
@@ -19,21 +18,25 @@ export const createUser = async (req, res) => {
     if (roles) {
         const foundRoles = await Role.find({ rol: { $in: roles } })
         newUser.roles = foundRoles.map(role => role._id)
+        console.log(foundRoles);
     } else {
         const role = await Role.findOne({ rol: "user" })
         newUser.roles = [role._id]
+        console.log(role._id);
     }
 
     if (empresa) {
         const enterprise = await Enterprise.findOne({ _id: empresa })
-        newUser.empresa = [enterprise._id]
+        newUser.empresa = enterprise._id
+        console.log(enterprise);
     } else {
         const enterprise = await Enterprise.findOne({ name: "GEMA" })
         console.log(enterprise);
-        newUser.empresa = [enterprise._id]
+        newUser.empresa = enterprise._id
     }
 
     const userSaved = await newUser.save()
+    console.log(userSaved);
 
     res.status(201).json(userSaved)
 }
