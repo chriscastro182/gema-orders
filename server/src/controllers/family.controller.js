@@ -2,8 +2,10 @@ import Family from "../models/Family"
 
 export const createFamily = async (req, res) => {
 
-    const { name, status, description } = req.body
+    const { name, description } = req.body
 
+    const status = true
+    
     const newFamily = new Family(
         {
             name,

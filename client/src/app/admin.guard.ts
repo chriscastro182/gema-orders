@@ -21,7 +21,8 @@ export class AdminGuard implements CanActivate {
       },
       err => {
         console.log(err.status)
-        this.authService.getSessionBehavior(err.status)
+        this.authService.getSessionBehavior(err.status)        
+        this.router.navigate(['/pages/login']);
         return isAdmin;
       }
     )

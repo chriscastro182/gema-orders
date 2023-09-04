@@ -6,7 +6,7 @@ const familySchema = new Schema({
         required: true
     },
     status: {
-        type: String,
+        type: Boolean,
         required: true
     },
     description: {

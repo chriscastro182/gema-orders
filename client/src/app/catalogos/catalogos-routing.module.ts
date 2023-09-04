@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ApplianceComponent } from './appliance/appliance.component';
+import { FamiliesComponent } from './families/families.component';
 
-const routes: Routes = [];
+export const CatalogosRoutes: Routes = [{
+  path: '',
+  children: [ {
+      path: 'catalogs/families',
+      component: FamiliesComponent
+  },{
+    path: 'catalogs/appliance',
+    component: ApplianceComponent
+  }]
+}]; 
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class CatalogosRoutingModule { }

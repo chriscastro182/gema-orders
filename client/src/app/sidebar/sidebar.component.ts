@@ -46,15 +46,24 @@ export const ADMIN_ROUTES: RouteInfo[] = [/* {
     type: 'link',
     icontype: 'pe-7s-graph'
 } ,*/{
-    path: '/orders',
-    title: 'Órdenes',
+    path: '/catalogs',
+    title: 'Catálogos',
     type: 'sub',
-    icontype: 'pe-7s-plugin',
+    icontype: 'pe-7s-browser',
     children: [
-        {path: 'create-order', title: 'Crear Orden', ab:'CO'},
-        {path: 'orders', title: 'Ordenes', ab:'O'},
+        {path: 'families', title: 'Familias', ab:'FA'},
+        {path: 'appliance', title: 'Productos', ab:'P'},
     ]
-},{
+    },{
+        path: '/orders',
+        title: 'Órdenes',
+        type: 'sub',
+        icontype: 'pe-7s-date',
+        children: [
+            {path: 'create-order', title: 'Crear Orden', ab:'CO'},
+            {path: 'orders', title: 'Ordenes', ab:'O'},
+        ]
+    },{
     path: '/user',
     title: 'Usuarios',
     type: 'sub',

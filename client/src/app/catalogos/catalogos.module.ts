@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { CatalogosRoutingModule } from './catalogos-routing.module';
+import { RouterModule } from '@angular/router';
 import { FamiliesComponent } from './families/families.component';
 import { ApplianceComponent } from './appliance/appliance.component';
-
+import { FormsModule } from '@angular/forms';
+import { CatalogosRoutes } from './catalogos-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { ApplianceComponent } from './appliance/appliance.component';
   ],
   imports: [
     CommonModule,
-    CatalogosRoutingModule
+    FormsModule,
+    RouterModule.forChild(CatalogosRoutes),
   ]
 })
 export class CatalogosModule { }

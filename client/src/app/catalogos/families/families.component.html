@@ -1,1 +1,21 @@
-<p>families works!</p>
+<div class="main-content">
+
+    <div class="container-fluid">
+        <h4 class="title">Familias <small>(Catálogo)</small></h4>
+        <button type="button" class="btn btn-success pull-right">Agregar Familia</button>
+        <br>
+        <hr>
+        <div class="row" *ngFor="let familyBlock of FamilyRow">
+            <div class="col-md-4" *ngFor="let item of familyBlock">
+                <div class="card" style="height: 200px;">
+                    <div class="content text-center">
+                        <h4>{{item.name}}</h4>
+                        <code>(familia)</code>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>    
